@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body { @apply bg-ivory text-ink font-sans; font-size: 16px; line-height: 1.6; }
+  h1,h2,h3,h4 { @apply font-serif font-normal; font-optical-sizing: auto; }
+  ::selection { background: #D6B3A8; color: #1E2820; }
+  :focus-visible { outline: 2px solid #22372A; outline-offset: 3px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+}
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12; }
+  .link-u { background: linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat; transition: background-size .3s; }
+  .link-u:hover { background-size: 100% 1px; }
+  .field { @apply w-full bg-white/70 border border-linen px-4 py-3 text-[15px] text-ink placeholder:text-ink-mute rounded-[3px] transition-colors focus:outline-none focus:border-forest; }
+  .field-err { @apply border-clay; }
+  .label { @apply block text-[13px] font-medium text-ink-soft mb-1.5; }
+  .grain::after { content:''; position:absolute; inset:0; pointer-events:none; opacity:.22; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.28 0 0 0 0 0.22 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { scrollbar-width: none; }
+}
+@keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-in > * { animation: heroIn .9s cubic-bezier(.2,.7,.2,1) both; }
+.hero-in > *:nth-child(2) { animation-delay: .12s; } .hero-in > *:nth-child(3) { animation-delay: .24s; } .hero-in > *:nth-child(4) { animation-delay: .36s; }
+@keyframes drawerIn { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.drawer-in { animation: drawerIn .35s cubic-bezier(.2,.7,.2,1); } .fade-in { animation: fadeIn .25s ease; }
