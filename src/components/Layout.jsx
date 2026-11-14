@@ -336,11 +336,3 @@ function FootCol({ title, links }) {
     </div>
   )
 }
-
-export function ProposalBadge() {
-  return (
-    <div className="pointer-events-none fixed bottom-4 right-4 z-30 hidden md:block">
-      <span className="pointer-events-auto rounded-[2px] border border-linen bg-ivory/90 px-3 py-1.5 text-[14px] text-ink-mute backdrop-blur">Proposed redesign · interactive mockup · demo data</span>
-    </div>
-  )
-}

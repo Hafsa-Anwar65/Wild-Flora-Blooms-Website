@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { StoreProvider, useStore } from './store'
 import { products, categories } from './data'
-import { Header, Footer, CartDrawer, SearchOverlay, Toast, ProposalBadge } from './components/Layout'
+import { Header, Footer, CartDrawer, SearchOverlay, Toast } from './components/Layout'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Product from './pages/Product'
@@ -56,7 +56,6 @@ export default function App() {
       <CartDrawer />
       <SearchOverlay />
       <Toast />
-      <ProposalBadge />
     </StoreProvider>
   )
 }
