@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Mail, Printer } from 'lucide-react'
 import { voucherAmounts, fmt2 } from '../data'
 import { Button, Field, DemoNote, Ph } from '../components/ui'
-import { VoucherCard } from './Home'
+import { LOGO } from '../data'
 import { useStore } from '../store'
 
 export default function Vouchers() {
@@ -31,12 +31,12 @@ export default function Vouchers() {
     <div className="bg-rose-pale/60">
       <div className="wrap grid gap-12 py-14 md:py-20 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
-          <p className="font-serif text-[17px] italic text-ink-soft">Gift vouchers</p>
-          <h1 className="mt-3 text-h1 text-forest">A little something beautiful.</h1>
-          <p className="mt-4 max-w-[48ch] text-[17px] text-ink-soft">Redeemable for flowers, plants or a workshop place. We email it with your message, ready to forward or print.</p>
+          <p className="font-serif text-[19px] italic text-ink-soft">Gift vouchers</p>
+          <h1 className="mt-3 wf-h1">Flower & workshop gift vouchers</h1>
+          <p className="mt-4 max-w-[48ch] text-[19px] text-ink-soft">Redeemable for flowers, plants or a workshop place. We email it with your message, ready to forward or print.</p>
           <div className="mt-10 lg:sticky lg:top-[170px]">
             <div className="mx-auto max-w-[520px] -rotate-1 transition-transform"><VoucherCard amount={value || '—'} to={f.recipient || 'Someone lovely'} from={f.sender || 'You'} message={f.message} /></div>
-            <p className="mt-6 text-center text-[13px] text-ink-mute">Live preview · validity period <Ph>to confirm</Ph></p>
+            <p className="mt-6 text-center text-[15px] text-ink-mute">Live preview · validity period <Ph>to confirm</Ph></p>
           </div>
         </div>
 
@@ -47,9 +47,9 @@ export default function Vouchers() {
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
                 {voucherAmounts.map((a) => (
                   <button type="button" key={a} onClick={() => { setAmount(a); setUseCustom(false) }} aria-pressed={!useCustom && amount === a}
-                    className={`h-12 rounded-[2px] border text-[15px] ${!useCustom && amount === a ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>${a}</button>
+                    className={`h-12 rounded-[2px] border text-[17px] ${!useCustom && amount === a ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>${a}</button>
                 ))}
-                <button type="button" onClick={() => setUseCustom(true)} aria-pressed={useCustom} className={`h-12 rounded-[2px] border text-[15px] ${useCustom ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>Other</button>
+                <button type="button" onClick={() => setUseCustom(true)} aria-pressed={useCustom} className={`h-12 rounded-[2px] border text-[17px] ${useCustom ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>Other</button>
               </div>
               {useCustom && (
                 <Field label="Custom amount (AUD)" error={err.amount} className="mt-4">
@@ -61,7 +61,7 @@ export default function Vouchers() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <Field label="Recipient’s name" error={err.recipient}><input value={f.recipient} onChange={set('recipient')} className={`field ${err.recipient ? 'field-err' : ''}`} /></Field>
               <Field label="Your name" error={err.sender}><input value={f.sender} onChange={set('sender')} className={`field ${err.sender ? 'field-err' : ''}`} /></Field>
-              <Field label="Personal message" className="sm:col-span-2" hint={`${f.message.length}/240`}><textarea rows={3} value={f.message} onChange={(e) => setF({ ...f, message: e.target.value.slice(0, 240) })} className="field resize-none font-serif text-[16px] italic" placeholder="Happy birthday — treat yourself to something lovely." /></Field>
+              <Field label="Personal message" className="sm:col-span-2" hint={`${f.message.length}/240`}><textarea rows={3} value={f.message} onChange={(e) => setF({ ...f, message: e.target.value.slice(0, 240) })} className="field resize-none font-serif text-[18px] italic" placeholder="Happy birthday — treat yourself to something lovely." /></Field>
             </div>
 
             <fieldset className="mt-8">
@@ -70,7 +70,7 @@ export default function Vouchers() {
                 {[{ id: 'email', icon: Mail, t: 'Email it to them', d: 'On a date you choose' }, { id: 'self', icon: Printer, t: 'Email it to me', d: 'To print or forward' }].map((o) => (
                   <label key={o.id} className={`flex cursor-pointer items-start gap-3 rounded-[2px] border p-4 ${f.delivery === o.id ? 'border-forest bg-white' : 'border-linen bg-white/50'}`}>
                     <input type="radio" name="vd" className="mt-1 accent-forest" checked={f.delivery === o.id} onChange={() => setF({ ...f, delivery: o.id })} />
-                    <o.icon size={18} strokeWidth={1.5} className="mt-0.5 text-forest" /><span><span className="block text-[15px]">{o.t}</span><span className="text-[13px] text-ink-mute">{o.d}</span></span>
+                    <o.icon size={18} strokeWidth={1.5} className="mt-0.5 text-forest" /><span><span className="block text-[17px]">{o.t}</span><span className="text-[15px] text-ink-mute">{o.d}</span></span>
                   </label>
                 ))}
               </div>
@@ -86,6 +86,20 @@ export default function Vouchers() {
             <DemoNote className="mt-4">Voucher codes and emails would be generated by the e-commerce platform. Nothing is sent from this mockup.</DemoNote>
           </div>
         </form>
+      </div>
+    </div>
+  )
+}
+
+export function VoucherCard({ amount = 100, to = 'Someone lovely', from = 'You', message, className = '' }) {
+  return (
+    <div className={`relative aspect-[1.6/1] w-full overflow-hidden bg-ivory p-6 shadow-[0_30px_60px_-36px_rgba(0,0,0,.45)] sm:p-8 ${className}`}>
+      <div className="absolute inset-3 border border-sage" />
+      <div className="relative flex h-full flex-col items-center text-center">
+        <img src={LOGO} alt="" className="h-[38%] w-auto" />
+        <p className="mt-auto font-serif text-[46px] italic leading-none text-ink sm:text-[56px]">${amount}</p>
+        <p className="mt-2 font-caps text-[10.5px] uppercase tracking-[0.2em] text-ink-soft">Gift voucher · for {to || '—'} · from {from || '—'}</p>
+        {message && <p className="mt-1 line-clamp-1 font-serif text-[15px] italic text-ink-soft">“{message}”</p>}
       </div>
     </div>
   )

@@ -34,43 +34,43 @@ export default function Weddings() {
   return (
     <div>
       <section className="grid md:grid-cols-2">
-        <Photo k="wedding1" className="aspect-[4/5] md:aspect-auto md:min-h-[680px]" />
+        <Photo k="w4" className="aspect-[4/5] md:aspect-auto md:min-h-[680px]" />
         <div className="flex flex-col justify-center bg-forest px-6 py-16 text-ivory md:px-14 lg:px-20">
-          <p className="font-serif text-[17px] italic text-ivory/70">Weddings & events</p>
-          <h1 className="mt-3 text-h1">Flowers that tell your story.</h1>
-          <p className="mt-5 max-w-[46ch] text-[17px] text-ivory/80">From intimate celebrations to unforgettable wedding days, we create thoughtful floral designs that bring your vision to life.</p>
+          <p className="font-serif text-[19px] italic text-white/90">Weddings & events</p>
+          <h1 className="mt-3 wf-h1 !text-white">Wedding & event florist in Coogee and Perth</h1>
+          <p className="wf-body mt-5 max-w-[46ch] text-[19px] text-white/95">From intimate celebrations to unforgettable wedding days, we create thoughtful floral designs that bring your vision to life.</p>
           <Button as="a" href="#enquiry" variant="light" size="lg" className="mt-8 self-start" onClick={(e) => { e.preventDefault(); document.getElementById('enquiry').scrollIntoView({ behavior: 'smooth' }) }}>Enquire About Wedding Flowers</Button>
         </div>
       </section>
 
       <section className="wrap grid gap-12 py-20 md:grid-cols-12 md:py-28">
         <div className="md:col-span-4">
-          <h2 className="text-h2 text-forest">How it works</h2>
-          <p className="mt-4 text-ink-soft">Every wedding starts with a conversation, not a package. Here’s what to expect.</p>
+          <h2 className="wf-h2">How it works</h2>
+          <p className="mt-4 text-ink-soft">Seasonal wedding flowers designed to complement your celebration, including bridal bouquets, ceremony flowers and reception arrangements.</p>
         </div>
         <ol className="grid gap-8 sm:grid-cols-2 md:col-span-8">
           {[['Tell us about your day', 'Share your date, venue and the feel you’re after using the form below.'], ['We talk it through', 'A call or studio visit to go over colours, flowers and the parts of the day that matter most.'], ['You receive a quote', 'A clear, itemised quote — so you can see exactly where the budget goes.'], ['We bring it to life', 'Flowers sourced and designed in the week of your wedding, then delivered and installed.']].map(([t, d], i) => (
             <li key={t} className="border-t border-linen pt-5">
-              <span className="font-serif text-[15px] text-rose-deep">Step {i + 1}</span>
+              <span className="font-serif text-[17px] text-rose-deep">Step {i + 1}</span>
               <p className="mt-2 font-serif text-[22px] leading-tight">{t}</p>
-              <p className="mt-2 text-[15px] text-ink-soft">{d}</p>
+              <p className="mt-2 text-[17px] text-ink-soft">{d}</p>
             </li>
           ))}
         </ol>
       </section>
 
       <section className="wrap grid grid-cols-6 gap-3 md:grid-cols-12 md:gap-4">
-        <Photo k="wedding2" className="col-span-6 aspect-[4/3] md:col-span-7" />
-        <Photo k="wedding3" className="col-span-3 aspect-[3/4] md:col-span-3" caption={false} />
-        <Photo k="ig4" className="col-span-3 aspect-[3/4] md:col-span-2 md:aspect-auto" caption={false} />
+        <Photo k="e5" className="col-span-6 aspect-[4/3] md:col-span-7" />
+        <Photo k="e1" className="col-span-3 aspect-[3/4] md:col-span-3" caption={false} />
+        <Photo k="w5" className="col-span-3 aspect-[3/4] md:col-span-2 md:aspect-auto" caption={false} />
       </section>
 
       <section id="enquiry" className="mt-20 scroll-mt-28 bg-ivory-deep md:mt-28">
         <div className="wrap grid gap-12 py-16 md:py-24 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <h2 className="text-h2 text-forest">Wedding enquiry</h2>
+            <h2 className="wf-h2">Wedding enquiry</h2>
             <p className="mt-4 text-ink-soft">The more you can tell us, the more useful our first reply will be. Nothing here is a commitment.</p>
-            <p className="mt-6 text-[14px] text-ink-mute">Prefer to talk? <Link to="contact" className="link-u text-forest">Contact the studio</Link>.</p>
+            <p className="mt-6 text-[16px] text-ink-mute">Prefer to talk? <Link to="contact" className="link-u text-forest">Contact the studio</Link>.</p>
           </div>
           <div className="lg:col-span-8">
             {sent ? (
@@ -78,7 +78,7 @@ export default function Weddings() {
                 <span className="grid h-12 w-12 place-items-center rounded-full bg-sage-pale text-forest"><Check size={22} /></span>
                 <p className="mt-6 font-serif text-[32px] leading-tight text-forest">Thank you, {sent.name.split(' ')[0]}. We’ve got your enquiry.</p>
                 <p className="mt-3 max-w-[54ch] text-ink-soft">Reference {sent.ref}. We’ll be in touch about your {new Date(sent.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })} wedding. Our usual reply time is <span className="rounded-[2px] border border-dashed border-sage px-1.5">to confirm</span>.</p>
-                <dl className="mt-8 grid gap-4 border-t border-linen pt-6 text-[14.5px] sm:grid-cols-2">
+                <dl className="mt-8 grid gap-4 border-t border-linen pt-6 text-[16.5px] sm:grid-cols-2">
                   <div><dt className="text-ink-mute">Venue</dt><dd>{sent.venue || 'Not decided yet'}</dd></div>
                   <div><dt className="text-ink-mute">Guests</dt><dd>{sent.guests || '—'}</dd></div>
                   <div><dt className="text-ink-mute">Budget</dt><dd>{sent.budget}</dd></div>
@@ -98,10 +98,10 @@ export default function Weddings() {
                   <legend className="label">Floral requirements</legend>
                   <div className="flex flex-wrap gap-2">
                     {REQS.map((r) => (
-                      <button type="button" key={r} onClick={() => toggle(r)} aria-pressed={f.reqs.includes(r)} className={`h-10 rounded-full border px-4 text-[14px] ${f.reqs.includes(r) ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>{r}</button>
+                      <button type="button" key={r} onClick={() => toggle(r)} aria-pressed={f.reqs.includes(r)} className={`h-10 rounded-full border px-4 text-[16px] ${f.reqs.includes(r) ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>{r}</button>
                     ))}
                   </div>
-                  {err.reqs && <p className="mt-2 text-[13px] text-clay">{err.reqs}</p>}
+                  {err.reqs && <p className="mt-2 text-[15px] text-clay">{err.reqs}</p>}
                 </fieldset>
                 <Field label="Budget range" error={err.budget} className="sm:col-span-2">
                   <select {...E('budget')} value={f.budget} onChange={set('budget')} className={c('budget')}>

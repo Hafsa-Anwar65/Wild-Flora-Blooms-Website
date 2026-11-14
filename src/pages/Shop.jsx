@@ -44,11 +44,11 @@ export default function Shop() {
       <section className="bg-ivory-deep">
         <div className="wrap grid items-end gap-8 pb-10 pt-12 md:grid-cols-12 md:pb-14 md:pt-16">
           <div className="md:col-span-7">
-            <p className="text-[13px] text-ink-mute"><Link to="home" className="link-u">Home</Link> / <Link to="shop" className="link-u">Shop</Link>{current && <> / {current.name}</>}</p>
-            <h1 className="mt-4 text-h1 text-forest">{current ? current.name : 'The flower shop'}</h1>
-            <p className="mt-4 max-w-[52ch] text-[17px] text-ink-soft">{current ? current.blurb + '.' : 'Bouquets, natives, orchids and seasonal things, designed in the studio and delivered by hand.'} Prices are illustrative for this mockup.</p>
+            <p className="text-[15px] text-ink-mute"><Link to="home" className="link-u">Home</Link> / <Link to="shop" className="link-u">Shop</Link>{current && <> / {current.name}</>}</p>
+            <h1 className="mt-4 wf-h1">{current ? current.name : 'Flowers & flower delivery, Coogee and Perth'}</h1>
+            <p className="mt-4 max-w-[52ch] text-[19px] text-ink-soft">{current ? current.blurb + '.' : 'Bouquets, natives, orchids and seasonal things, designed in the studio and delivered by hand.'} Prices are illustrative for this mockup.</p>
           </div>
-          <Photo k={current ? current.photo : 'signature'} caption={false} className="hidden aspect-[16/9] md:col-span-5 md:block" />
+          <Photo k={current ? current.photo : 's1'} caption={false} className="hidden aspect-[16/9] md:col-span-5 md:block" />
         </div>
       </section>
 
@@ -58,18 +58,18 @@ export default function Shop() {
           <div className="no-scrollbar -mx-1 hidden flex-1 gap-1 overflow-x-auto md:flex" role="tablist" aria-label="Categories">
             {[{ id: 'all', name: 'All' }, ...categories].map((c) => (
               <button key={c.id} role="tab" aria-selected={cat === c.id} onClick={() => setCat(c.id)}
-                className={`h-9 shrink-0 rounded-[2px] px-3.5 text-[14px] ${cat === c.id ? 'bg-forest text-ivory' : 'text-ink-soft hover:bg-forest/5'}`}>{c.name}</button>
+                className={`h-9 shrink-0 rounded-[2px] px-3.5 text-[16px] ${cat === c.id ? 'bg-forest text-ivory' : 'text-ink-soft hover:bg-forest/5'}`}>{c.name}</button>
             ))}
           </div>
-          <button onClick={() => setFiltersOpen(true)} className="flex h-10 items-center gap-2 rounded-[2px] border border-linen px-3 text-[14px] md:hidden"><SlidersHorizontal size={16} strokeWidth={1.5} /> Filter & sort</button>
-          <span className="text-[13px] text-ink-mute md:hidden">{list.length} items</span>
+          <button onClick={() => setFiltersOpen(true)} className="flex h-10 items-center gap-2 rounded-[2px] border border-linen px-3 text-[16px] md:hidden"><SlidersHorizontal size={16} strokeWidth={1.5} /> Filter & sort</button>
+          <span className="text-[15px] text-ink-mute md:hidden">{list.length} items</span>
           <div className="ml-auto hidden items-center gap-4 md:flex">
             <label className="relative">
               <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-mute" />
-              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the shop" className="h-9 w-48 rounded-[2px] border border-linen bg-white/60 pl-9 pr-3 text-[14px] focus:border-forest focus:outline-none lg:w-56" />
+              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the shop" className="h-9 w-48 rounded-[2px] border border-linen bg-white/60 pl-9 pr-3 text-[16px] focus:border-forest focus:outline-none lg:w-56" />
             </label>
-            <label className="flex items-center gap-2 text-[14px] text-ink-soft"><input type="checkbox" checked={inStock} onChange={(e) => setInStock(e.target.checked)} className="accent-forest" /> Available now</label>
-            <select value={sort} onChange={(e) => setSort(e.target.value)} className="h-9 rounded-[2px] border border-linen bg-white/60 px-2 text-[14px] focus:border-forest focus:outline-none" aria-label="Sort">
+            <label className="flex items-center gap-2 text-[16px] text-ink-soft"><input type="checkbox" checked={inStock} onChange={(e) => setInStock(e.target.checked)} className="accent-forest" /> Available now</label>
+            <select value={sort} onChange={(e) => setSort(e.target.value)} className="h-9 rounded-[2px] border border-linen bg-white/60 px-2 text-[16px] focus:border-forest focus:outline-none" aria-label="Sort">
               {SORTS.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
             </select>
           </div>
@@ -79,21 +79,21 @@ export default function Shop() {
       {/* Mobile filter sheet */}
       {filtersOpen && (
         <div className="fixed inset-0 z-[60] md:hidden" role="dialog" aria-label="Filter and sort">
-          <div className="fade-in absolute inset-0 bg-forest-deep/40" onClick={() => setFiltersOpen(false)} />
+          <div className="fade-in absolute inset-0 bg-black/35" onClick={() => setFiltersOpen(false)} />
           <div className="fade-in absolute inset-x-0 bottom-0 max-h-[85vh] overflow-y-auto rounded-t-[10px] bg-ivory px-5 pb-8 pt-5">
             <div className="mb-5 flex items-center justify-between"><p className="font-serif text-[24px]">Filter & sort</p><button onClick={() => setFiltersOpen(false)} aria-label="Close" className="p-2"><X size={20} /></button></div>
             <label className="relative block"><Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-mute" /><input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the shop" className="field pl-9" /></label>
             <p className="label mt-6">Category</p>
             <div className="flex flex-wrap gap-2">
               {[{ id: 'all', name: 'All' }, ...categories].map((c) => (
-                <button key={c.id} onClick={() => setCat(c.id)} className={`h-10 rounded-[2px] border px-3.5 text-[14px] ${cat === c.id ? 'border-forest bg-forest text-ivory' : 'border-linen'}`}>{c.name}</button>
+                <button key={c.id} onClick={() => setCat(c.id)} className={`h-10 rounded-[2px] border px-3.5 text-[16px] ${cat === c.id ? 'border-forest bg-forest text-ivory' : 'border-linen'}`}>{c.name}</button>
               ))}
             </div>
             <p className="label mt-6">Sort by</p>
             <div className="divide-y divide-linen border-y border-linen">
-              {SORTS.map((s) => <label key={s.id} className="flex items-center justify-between py-3 text-[15px]">{s.label}<input type="radio" name="sort" checked={sort === s.id} onChange={() => setSort(s.id)} className="accent-forest" /></label>)}
+              {SORTS.map((s) => <label key={s.id} className="flex items-center justify-between py-3 text-[17px]">{s.label}<input type="radio" name="sort" checked={sort === s.id} onChange={() => setSort(s.id)} className="accent-forest" /></label>)}
             </div>
-            <label className="mt-6 flex items-center justify-between text-[15px]">Only show available now<input type="checkbox" checked={inStock} onChange={(e) => setInStock(e.target.checked)} className="h-5 w-5 accent-forest" /></label>
+            <label className="mt-6 flex items-center justify-between text-[17px]">Only show available now<input type="checkbox" checked={inStock} onChange={(e) => setInStock(e.target.checked)} className="h-5 w-5 accent-forest" /></label>
             <button onClick={() => setFiltersOpen(false)} className="mt-8 h-12 w-full rounded-[2px] bg-forest text-ivory">Show {list.length} items</button>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function Shop() {
 
       {/* Grid with editorial rhythm: every 5th item takes a wider slot */}
       <section className="wrap py-12 md:py-16">
-        {q && <p className="mb-6 text-[15px] text-ink-soft">{list.length} results for “{q}” <button className="ml-2 text-forest link-u" onClick={() => setQ('')}>Clear</button></p>}
+        {q && <p className="mb-6 text-[17px] text-ink-soft">{list.length} results for “{q}” <button className="ml-2 text-forest link-u" onClick={() => setQ('')}>Clear</button></p>}
         {list.length === 0 ? (
           <div className="max-w-[44ch] py-16">
             <p className="font-serif text-[28px] text-forest">Nothing here just now.</p>

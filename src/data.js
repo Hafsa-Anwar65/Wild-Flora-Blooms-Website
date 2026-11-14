@@ -3,145 +3,146 @@
 // Prices, sessions, enquiries and fees are illustrative only.
 // ─────────────────────────────────────────────────────────────
 
-// Photography. Each entry is an art-directed plate: `src` is where the
-// studio's own photograph goes (leave null to show the tonal placeholder),
-// `shot` is the brief for the photographer, `tones` drive the placeholder.
+// Photography — the client's own photos, served from the live site's image CDN.
+// Before launch, download these into /public/images and point `src` at them.
+// Entries with src: null show a tonal placeholder plus the shot brief.
+const SC = 'https://static.showit.co'
+const img = (path, size = 1200) => `${SC}/${size}/${path}`
+
+export const LOGO = img('lV6ZGONC7pk5hGPmbdRf4w/shared/wild_flora_print_transparent.png', 800)
+
 export const photos = {
-  hero:        { src: null, shot: 'Loose garden armful on the studio bench, side light', tones: ['#3A4A3A', '#C98F7E', '#E9D6C4', '#8E9C7C', '#6D3F35'] },
-  heroDetail:  { src: null, shot: 'Detail — ranunculus and sweet pea, petals edge-lit', tones: ['#D9C3B4', '#F2E4D8', '#B37C6E', '#A8B396'] },
-  catEveryday: { src: null, shot: 'Everyday bouquet wrapped in kraft, held at the door', tones: ['#E3D5C3', '#D4A496', '#F4ECE2', '#8B9A7C'] },
-  catSeasonal: { src: null, shot: 'Seasonal stems in a stoneware jug, late afternoon', tones: ['#C9B39A', '#E8C9A8', '#B7714F', '#7E8B6A'] },
-  catNative:   { src: null, shot: 'Banksia, kangaroo paw and gum leaves on linen', tones: ['#5B5E46', '#B7643F', '#D7B98A', '#3E4A35'] },
-  catPlants:   { src: null, shot: 'White Phalaenopsis orchid in a matte pot by a window', tones: ['#DCDCD0', '#F7F4EE', '#A3AE95', '#C7B7C0'] },
-  catXmas:     { src: null, shot: 'Native Christmas wreath hung on a timber door', tones: ['#2E3B2C', '#6E7D5A', '#A6543A', '#C9B58F'] },
+  lora:        { src: img('UWTZwWkYD515eUSh8_DWfA/shared/751f1d42-88fc-4ffb-9440-37a4be8fd86e.jpg', 800), alt: 'Lora from Wild Flora Blooms, a Coogee florist specialising in seasonal flowers', shot: 'Lora portrait', tones: ['#A9B08E', '#F2F0EC', '#7B2E3E', '#5E7A3E'] },
+  // Weddings
+  w1:  { src: img('OWAL2WugyI9D6fMrTqxrXw/shared/4bdbd658-2d4f-41b1-b785-26c3283405e3.jpg'), alt: 'Bride and bridesmaids holding custom wedding bouquets by Wild Flora Blooms, Coogee wedding florist', shot: 'Bridal party', tones: ['#C9C2B6', '#E9C9C3', '#F4EFEA', '#8E9A7A'] },
+  w2:  { src: img('6-NyyOtvdr_z_9Me6ULCkg/shared/5efbd7c4-5e99-4fa2-927e-51dfad93d192.jpg'), alt: 'Wedding bouquet with bridal heels, rings and invitations, flowers by Wild Flora Blooms', shot: 'Wedding flat lay', tones: ['#EDE6E0', '#F8F4F0', '#D9B1A8', '#A2AC86'] },
+  w3:  { src: img('33seg8GX3cm2DCWDkHqEYA/shared/wild_flora_blooms_7.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D7CFC4', '#EBD4CD', '#9AA483', '#F5F0EA'] },
+  w4:  { src: img('lv9x6gVlS8uVPqzU8pECRg/shared/1ae5959d-6e67-4e9b-bef2-f2d1c20fa604.jpg'), alt: 'Bride and bridesmaids holding seasonal wedding bouquets by Wild Flora Blooms, Coogee and Perth wedding florist', shot: 'Bridesmaids', tones: ['#B8B2A6', '#E7C8C4', '#F3EEE9', '#7F8C6B'] },
+  w5:  { src: img('mhODckkZ1t8jaXzTtpTg7Q/shared/6fddb432-30bb-4d07-a876-e7245d951e64.jpg'), alt: 'Close-up of a bridal bouquet by Wild Flora Blooms', shot: 'Bridal bouquet close-up', tones: ['#E4D9D1', '#F2E1DC', '#C99A90', '#93A07E'] },
+  w6:  { src: img('zfChDbpJBUwOn8vHB3sUeA/shared/wild_flora_blooms_9.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D3CCC0', '#E8D2CB', '#A2AC86', '#F4EFEA'] },
+  w7:  { src: img('tdm3zFUYTdVdjouKOjtA_Q/shared/wild_flora_blooms_6.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#CFC8BC', '#E5CFC8', '#94A07F', '#F2EDE8'] },
+  w8:  { src: img('2VHcyevGMEP8EVMcOSdF9g/shared/wild_flora_blooms_16.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D8D1C6', '#EAD5CE', '#9DA785', '#F6F1EC'] },
+  w9:  { src: img('WWw3AcEz335VMY52ORlECQ/shared/wild_flora_blooms_5.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D1CABF', '#E6D0C9', '#97A281', '#F3EEE9'] },
+  w10: { src: img('j0eHI-xzbTgQ8rvsCMHXwQ/shared/dcc8b390-4d97-4862-b6ba-267d7be1c114.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D6CFC4', '#E9D3CC', '#9BA583', '#F5F0EB'] },
+  w11: { src: img('XFxjMKb7GGdZWu7XFcABSQ/shared/edae0d0e-5cdd-49f7-8fef-fd55d5c82d3a.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D4CDC2', '#E7D1CA', '#99A382', '#F4EFEA'] },
+  w12: { src: img('LFLZC42AjeH-fJLNz5xkHA/shared/b5309d28-6a8b-4feb-8a24-3a8a74166c3a.jpg'), alt: 'Wedding flowers by Wild Flora Blooms', shot: 'Wedding flowers', tones: ['#D2CBC0', '#E8D2CB', '#98A281', '#F3EEE9'] },
+  // Seasonal arrangements
+  s1:  { src: img('pzHbn8DRFogN54y6VVWSMA/shared/081e74a4-e9b2-404a-a87a-3866aff7bb64.jpg'), alt: 'Seasonal flower arrangement by Wild Flora Blooms, Coogee florist using locally grown blooms', shot: 'Seasonal arrangement', tones: ['#D8C9B6', '#E9B9A6', '#F4ECE2', '#8B9A7C'] },
+  s2:  { src: img('XGB_1I5U9JGQpFz_G79v8A/shared/wild_flora_blooms_15.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D5C4B0', '#E4B3A0', '#F2E8DE', '#86967A'] },
+  s3:  { src: img('TSS9LIpnGZeRHW6sd_WSxw/shared/22421ce2-0bc1-4731-9791-5e530a32a8ba_1.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#DCCDBA', '#EDBFAD', '#F5EEE5', '#8E9D7F'] },
+  s4:  { src: img('XHN8ARXRJnJfLCQe9tL0NQ/shared/wild_flora_blooms_8.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D3C2AE', '#E2B19E', '#F1E7DC', '#84947A'] },
+  s5:  { src: img('8qaYKVByyCj7TqjtOyDg7w/shared/f04eb2a5-4a27-41f1-aeef-f6b91050e6fe.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D9CAB7', '#EABCA9', '#F4EDE4', '#8A997B'] },
+  s6:  { src: img('Z_XoPPT4GRpJtE9YVbe_CA/shared/8ecd7b64-b787-499d-ae6e-5999d2e3b9b8.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D6C6B2', '#E7B6A3', '#F3EAE0', '#88987B'] },
+  s7:  { src: img('chejtFsHdGzkhfYfQwXvug/shared/9935b6ef-448c-4122-a42e-310bd3dbda89.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#DBCCB9', '#ECBEAC', '#F5EEE6', '#8C9B7D'] },
+  s8:  { src: img('e94BX47zaUtmwPvfCgcRIA/shared/wild_flora_blooms_11.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D4C3AF', '#E3B29F', '#F2E9DE', '#85957A'] },
+  s9:  { src: img('pYnI9Sqzl_KUhpSmMzuHVQ/shared/86fe1554-2ab4-40e8-9718-988ee202dcea.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#DACBB8', '#EBBDAB', '#F5EDE4', '#8B9A7C'] },
+  s10: { src: img('s-3-YKTlhe1LZVUasLOXNg/shared/85da20f4-562d-43e3-86d3-86467944aaab.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D7C7B3', '#E8B7A4', '#F3EBE1', '#89997B'] },
+  s11: { src: img('PaAxAnYkS4TBy43swWx3XA/shared/43216749-639b-4b79-a016-ce8fb5ae6465.jpg'), alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D9C9B5', '#E9BAA7', '#F4ECE3', '#8A997C'] },
+  s12: { src: `${SC}/1200/bw1e9hbl0VOmqYAEU1JKsg/343812/wild_flora_blooms_4.jpg`, alt: 'Seasonal bouquet by Wild Flora Blooms, Coogee florist', shot: 'Seasonal bouquet', tones: ['#D5C5B1', '#E6B5A2', '#F2E9DF', '#87977A'] },
+  // Events & workshops
+  e1:  { src: img('omif4s20m6i4Ou3IVyEPxQ/shared/478d8b7f-87be-4b61-86dd-c590b1c6aeb6.jpg'), alt: 'Wedding table centrepieces by Wild Flora Blooms, Coogee wedding and event florist', shot: 'Table centrepieces', tones: ['#BDB5A8', '#E3C7BE', '#8C9878', '#F1ECE6'] },
+  e2:  { src: img('TK_qU8PtHP-tgnn0BiLSpQ/shared/wild_flora_blooms_2.jpg'), alt: 'Flower crown created by Wild Flora Blooms for workshops and special events', shot: 'Flower crown', tones: ['#6F7D4E', '#E3B5B0', '#F1D7CF', '#A3A57A'] },
+  e3:  { src: img('wZk9iwd5obVecCWvcamSmw/shared/60961ee3-c5cd-4a7c-be29-5629f6c670e4.jpg'), alt: 'Event table floral arrangements by Wild Flora Blooms, Coogee florist', shot: 'Event tables', tones: ['#C7C0B4', '#E8A887', '#F2ECE5', '#8E9A79'] },
+  e4:  { src: img('dbpII0SOYMhnHGMlqqh7Sg/shared/wild_flora_blooms_18.jpg'), alt: 'Wrist corsage for a formal event by Wild Flora Blooms, Coogee and Perth florist', shot: 'Wrist corsage', tones: ['#D9D1C7', '#EBC9C2', '#A2AC86', '#F6F1EC'] },
+  e5:  { src: img('XM0tMKoUSQRgFPjwJ2kmNQ/shared/wild_flora_blooms_10.jpg'), alt: 'Arbour floral arrangement by Wild Flora Blooms for ceremony styling', shot: 'Ceremony arbour', tones: ['#B8B0A3', '#E7C6C5', '#F3EEE8', '#7D8B68'] },
+  e6:  { src: img('mxn6xID39dfyu4YJdPpCgQ/shared/ad7c4c96-3711-47ea-9065-817ed1f0b72d.jpg'), alt: 'Floral wreath created at a workshop by Wild Flora Blooms, Perth florist', shot: 'Workshop wreath', tones: ['#E4DFD9', '#B5462F', '#E79C4A', '#6C7B48'] },
+  e7:  { src: img('_9Hp9Wol4B_lzzZZ7YsVdw/shared/c3881f9a-4fa2-468f-abd4-a3dc3a6395c4.jpg'), alt: 'Seasonal floral arrangement by Wild Flora Blooms using locally grown blooms', shot: 'Seasonal arrangement', tones: ['#D3C3AF', '#E6B4A1', '#F2E9DF', '#86967A'] },
+  e8:  { src: img('8OVSKK4lK5Zow-XmMpI8Gw/shared/b18f5828-d148-4992-a782-00fbb3227d1d.jpg'), alt: 'Floral gift box by Wild Flora Blooms featuring seasonal, locally grown flowers', shot: 'Floral gift box', tones: ['#E3D6CC', '#E9B3A8', '#F5EEE8', '#93A07E'] },
+  e9:  { src: img('u0RMnj2hDcWYmDZaKrNZtw/shared/1fd62bb0-6979-48e7-835f-9cb92d66e1f0.jpg'), alt: 'Floral wreath created at a workshop by Wild Flora Blooms, Perth florist', shot: 'Workshop wreath', tones: ['#7A2F2A', '#F1F0EB', '#D9D6CD', '#6B7B4C'] },
+  e10: { src: img('waxquc0ofa2NGqlGVP_O-g/shared/a814454b-02b5-40d0-a3a6-4184d1b8773e.jpg'), alt: 'Floral wreath created at a workshop by Wild Flora Blooms, Perth florist', shot: 'Workshop wreath', tones: ['#E6E1DA', '#BF5A35', '#E4A04F', '#62723F'] },
+  e11: { src: img('wBUG5n3in-GTrUhiGsVOMw/shared/16ecf856-34b2-4ff2-9d0e-da521b92edaa.jpg'), alt: 'Floral wreath created at a workshop by Wild Flora Blooms, Perth florist', shot: 'Workshop wreath', tones: ['#E3DED6', '#B9523A', '#E2A156', '#67773F'] },
+  // No photo yet — studio to supply
+  orchid:      { src: null, shot: 'Phalaenopsis orchid in a ceramic pot — photo to supply', tones: ['#E4E2DA', '#FBF8F3', '#B5BDA8', '#D7C3CC'] },
+  orchidWhite: { src: null, shot: 'White Phalaenopsis, close crop — photo to supply', tones: ['#ECEAE2', '#FFFFFF', '#C2CAB7', '#E2D2D8'] },
+  native:      { src: null, shot: 'Native bouquet — banksia, kangaroo paw, gum — photo to supply', tones: ['#7B7656', '#C9733F', '#E1C690', '#55634A'] },
+  voucher:     { src: null, shot: 'Gift voucher card tucked into a posy — photo to supply', tones: ['#EBD8D0', '#F7EEE9', '#C79A8E', '#A2AC94'] },
+}
 
-  posy:        { src: null, shot: 'Seasonal posy, top-down on ivory paper', tones: ['#EADCCB', '#E2AFA1', '#F6EEE5', '#9DAA8B'] },
-  native:      { src: null, shot: 'Native garden bouquet, three-quarter view', tones: ['#7B7656', '#C9733F', '#E1C690', '#55634A'] },
-  signature:   { src: null, shot: 'Signature bouquet, tall and loose, against plaster wall', tones: ['#E6D8CA', '#C99486', '#F3E3D7', '#7F8E73', '#A86C5E'] },
-  orchid:      { src: null, shot: 'Phalaenopsis orchid, double stem, soft window light', tones: ['#E4E2DA', '#FBF8F3', '#B5BDA8', '#D7C3CC'] },
-  wreath:      { src: null, shot: 'Christmas wreath, eucalyptus and dried proteas, flat lay', tones: ['#3C4834', '#7C8A63', '#B86A47', '#D9C6A0'] },
-  dried:       { src: null, shot: 'Dried native bunch, paper daisies and grasses', tones: ['#D8C6A6', '#EAD9BB', '#B88A5C', '#A6A07C'] },
-  jar:         { src: null, shot: 'Garden roses in a glass jar on a kitchen table', tones: ['#E8D9CF', '#D7A39A', '#F5EAE4', '#9EA88F'] },
-  paw:         { src: null, shot: 'Kangaroo paw bunch, tied with cotton ribbon', tones: ['#B05E3A', '#D99A5B', '#6E7A55', '#E7D4B6'] },
-  lily:        { src: null, shot: 'Peace lily in a terracotta pot on timber floor', tones: ['#B9C2AA', '#E9ECE1', '#6F805F', '#C47C5C'] },
-  hoya:        { src: null, shot: 'Trailing hoya in a hanging planter', tones: ['#9AA88A', '#DCE2D2', '#5E6E52', '#E5D8C6'] },
-  garland:     { src: null, shot: 'Christmas table garland with candles', tones: ['#33402F', '#8A9670', '#C49A62', '#E5D7BD'] },
-  orchidWhite: { src: null, shot: 'Single-stem white orchid, close crop', tones: ['#ECEAE2', '#FFFFFF', '#C2CAB7', '#E2D2D8'] },
-
-  wedding1:    { src: null, shot: 'Bride holding a loose garden bouquet, back-lit', tones: ['#E7DCCF', '#F6EFE7', '#D2A79B', '#93A087'] },
-  wedding2:    { src: null, shot: 'Ceremony arbour of white and blush blooms', tones: ['#D9D3C4', '#F3EDE3', '#C9A29A', '#7D8C70'] },
-  wedding3:    { src: null, shot: 'Long table styling with bud vases and candles', tones: ['#B7A58C', '#E8D6BC', '#8A6A55', '#5D6A52'] },
-  workshop:    { src: null, shot: 'Hands building a hand-tied bouquet at the workshop table', tones: ['#CDB9A0', '#E9D8C2', '#9B6C59', '#7F8E70'] },
-  workshop2:   { src: null, shot: 'Workshop table, stems laid out, scissors and twine', tones: ['#A9A58A', '#E2D9C4', '#7A6A54', '#C68D74'] },
-  plantsHero:  { src: null, shot: 'Group of orchids and trailing plants on a sideboard', tones: ['#C6CCBC', '#F1F0EA', '#879577', '#D5BFC6'] },
-  seasonal:    { src: null, shot: 'Spring buckets in the cool room, colour by colour', tones: ['#E3C4A5', '#F0DDC9', '#C77C62', '#8D9C76'] },
-  voucher:     { src: null, shot: 'Hand-written gift card tucked into a posy', tones: ['#EBD8D0', '#F7EEE9', '#C79A8E', '#A2AC94'] },
-  story:       { src: null, shot: 'The florist at work, early morning, studio window', tones: ['#B8AE98', '#E5DDCC', '#6E6B57', '#C08F78'] },
-  story2:      { src: null, shot: 'Market buckets at dawn', tones: ['#7F8A6C', '#D6C4A4', '#A4654A', '#E8DDCB'] },
-  ig1: { src: null, shot: 'Instagram — buckets of David Austin roses', tones: ['#E7CFC5', '#F4E6DF', '#C9897A', '#9BA88C'] },
-  ig2: { src: null, shot: 'Instagram — waxflower close-up', tones: ['#E6DCE0', '#FAF5F6', '#C69FAD', '#8F9C82'] },
-  ig3: { src: null, shot: 'Instagram — delivery van door, bouquets inside', tones: ['#BFB49F', '#E7DED0', '#7E8E6E', '#C2785B'] },
-  ig4: { src: null, shot: 'Instagram — wedding buttonholes laid in a row', tones: ['#E6E0D3', '#F7F3EC', '#A9B49A', '#D9B5A9'] },
-  ig5: { src: null, shot: 'Instagram — banksia pod on the bench', tones: ['#6E6A4E', '#B88B55', '#3F4A37', '#D8C29A'] },
-  ig6: { src: null, shot: 'Instagram — workshop guests with finished bouquets', tones: ['#D5C4AE', '#EEE2D2', '#B07560', '#899878'] },
+export const galleries = {
+  wedding: ['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7', 'w8', 'w9', 'w10', 'w11', 'w12'],
+  events: ['e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9', 'e10', 'e11'],
+  seasonal: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12'],
 }
 
 export const categories = [
-  { id: 'everyday', name: 'Everyday Bouquets', blurb: 'Wrapped and ready, for no reason at all', photo: 'catEveryday' },
-  { id: 'seasonal', name: 'Seasonal Blooms', blurb: 'Whatever the season is doing best', photo: 'catSeasonal' },
-  { id: 'native', name: 'Native Flowers', blurb: 'Banksia, kangaroo paw, gum and wax', photo: 'catNative' },
-  { id: 'plants', name: 'Indoor Plants', blurb: 'Orchids and easy-going greenery', photo: 'catPlants' },
-  { id: 'christmas', name: 'Christmas Wreaths', blurb: 'Made in the studio from December', photo: 'catXmas' },
+  { id: 'seasonal', name: 'Seasonal Bouquets', blurb: 'Locally grown blooms that reflect the season', photo: 's1' },
+  { id: 'native', name: 'Native Bouquets', blurb: 'Australian natives, gathered loosely', photo: 'native' },
+  { id: 'plants', name: 'Phalaenopsis Orchids', blurb: 'Potted orchids that flower for months', photo: 'orchid' },
+  { id: 'christmas', name: 'Christmas Wreaths', blurb: 'Ready-made wreaths, made by hand', photo: 'e6' },
 ]
 
 export const products = [
   {
-    id: 'seasonal-posy', name: 'Seasonal Posy', category: 'seasonal', photo: 'posy', gallery: ['posy', 'heroDetail', 'seasonal'],
-    short: 'A small, hand-tied posy of the week’s best stems. Easy to carry, easy to love.',
-    description: 'Our posy changes with the market. We choose a handful of stems that are looking their best that week — perhaps ranunculus and sweet peas in spring, dahlias and rose hips later in the year — and tie them loosely with garden greenery. Wrapped in paper and finished with a cotton ribbon.',
+    id: 'seasonal-posy', name: 'Seasonal Posy', category: 'seasonal', photo: 's2', gallery: ['s2', 's5', 's9'],
+    short: 'A small, hand-tied posy of the week’s best locally grown stems.',
+    description: 'A sweet, hand-tied posy that changes with the season. Lora chooses a handful of locally grown stems that are looking their best that week and ties them loosely with garden greenery, wrapped and finished with ribbon.',
     sizes: [{ label: 'Small', price: 65 }, { label: 'Medium', price: 85 }, { label: 'Large', price: 110 }],
     stock: 'in', tag: 'Changes weekly',
   },
   {
-    id: 'native-garden-bouquet', name: 'Native Garden Bouquet', category: 'native', photo: 'native', gallery: ['native', 'catNative', 'paw'],
-    short: 'Banksia, kangaroo paw, gum leaves and whatever native is flowering now.',
-    description: 'A bouquet that looks like it came from a walk through the bush, gathered with a little more intention. Expect sculptural banksia and protea, the soft fuzz of kangaroo paw, silver gum and native grasses. Natives are long-lasting and many dry beautifully in the vase.',
+    id: 'seasonal-bouquet', name: 'Seasonal Bouquet', category: 'seasonal', photo: 's1', gallery: ['s1', 's3', 's7'],
+    short: 'Our signature garden-style bouquet — natural, textured and full of movement.',
+    description: 'Fresh bouquets created using locally sourced blooms that reflect the colours and textures of the current season. Designed in a loose, natural style so it looks just as lovely in the vase as it does in hand.',
+    sizes: [{ label: 'Small', price: 120 }, { label: 'Medium', price: 150 }, { label: 'Large', price: 195 }],
+    stock: 'in', tag: 'Most loved',
+  },
+  {
+    id: 'floral-gift-box', name: 'Floral Gift Box', category: 'seasonal', photo: 'e8', gallery: ['e8', 's4', 's6'],
+    short: 'Seasonal flowers arranged in a keepsake gift box. No vase needed.',
+    description: 'A floral gift box filled with seasonal, locally grown flowers, arranged to sit straight on a table or bench. A lovely option for birthdays, thank-yous and new arrivals.',
+    sizes: [{ label: 'Standard', price: 95 }, { label: 'Generous', price: 135 }],
+    stock: 'in', tag: 'Ready to display',
+  },
+  {
+    id: 'native-bouquet', name: 'Native Bouquet', category: 'native', photo: 'native', gallery: ['native', 's8', 's10'],
+    short: 'Banksia, kangaroo paw, gum and whatever native is flowering now.',
+    description: 'An earthy bouquet of Australian natives — sculptural banksia and protea, kangaroo paw, silver gum and native grasses. Natives are long-lasting and many dry beautifully in the vase.',
     sizes: [{ label: 'Small', price: 95 }, { label: 'Medium', price: 125 }, { label: 'Large', price: 160 }],
     stock: 'in', tag: 'Long vase life',
   },
   {
-    id: 'signature-bouquet', name: 'Signature Bouquet', category: 'everyday', photo: 'signature', gallery: ['signature', 'hero', 'heroDetail'],
-    short: 'Our generous, garden-style bouquet — loose, layered and full of movement.',
-    description: 'The bouquet we are known for. Designed in a loose, garden style with focal blooms, airy filler and trailing greenery so it looks natural in the vase rather than stiff and tight. We work to a palette of soft whites, blush and green unless you ask for something bolder.',
-    sizes: [{ label: 'Small', price: 120 }, { label: 'Medium', price: 150 }, { label: 'Large', price: 195 }],
-    stock: 'in', tag: 'Most gifted',
+    id: 'native-posy', name: 'Native Posy', category: 'native', photo: 'native', gallery: ['native'],
+    short: 'A smaller gathering of natives and seasonal foliage.',
+    description: 'All the texture of our native bouquet in a smaller, hand-tied posy. Easy to gift and easy to place on a desk or bedside table.',
+    sizes: [{ label: 'Posy', price: 70 }],
+    stock: 'in', tag: 'Native',
   },
   {
-    id: 'phalaenopsis-orchid', name: 'Phalaenopsis Orchid', category: 'plants', photo: 'orchid', gallery: ['orchid', 'orchidWhite', 'plantsHero'],
+    id: 'phalaenopsis-orchid', name: 'Phalaenopsis Orchid', category: 'plants', photo: 'orchid', gallery: ['orchid', 'orchidWhite'],
     short: 'An elegant moth orchid in a ceramic pot. Flowers for months with little fuss.',
-    description: 'Phalaenopsis are the easiest orchids to live with. Ours arrive potted in a simple matte ceramic with a moss top-dress and a care card. Keep in bright, indirect light and water lightly once a week — the flowers can last for months.',
+    description: 'Phalaenopsis are the easiest orchids to live with. Delivered potted in a simple ceramic with a care card. Keep in bright, indirect light and water lightly once a week — the flowers can last for months.',
     sizes: [{ label: 'Single stem', price: 85 }, { label: 'Double stem', price: 120 }],
     stock: 'low', tag: 'Plant',
   },
   {
-    id: 'christmas-wreath', name: 'Christmas Wreath', category: 'christmas', photo: 'wreath', gallery: ['wreath', 'catXmas', 'garland'],
-    short: 'Ready-made door wreath of eucalyptus, pine and dried native accents.',
-    description: 'Made by hand in the studio on a natural vine base. Layers of fresh eucalyptus and pine with dried protea, banksia pods and seed heads, finished with a linen ribbon for hanging. The greenery dries gracefully, so it will see you through the season.',
+    id: 'christmas-wreath', name: 'Christmas Wreath', category: 'christmas', photo: 'e6', gallery: ['e6', 'e10', 'e11'],
+    short: 'Ready-made door wreath of foliage, seasonal blooms and dried accents.',
+    description: 'Made by hand in the studio on a natural base, with layers of fresh foliage, seasonal flowers and dried accents, finished with a ribbon for hanging. The greenery dries gracefully, so it will see you through the festive season.',
     sizes: [{ label: '40 cm', price: 110 }, { label: '55 cm', price: 145 }],
     stock: 'in', tag: 'Seasonal',
   },
   {
-    id: 'rose-garden-jar', name: 'Garden Roses in a Jar', category: 'everyday', photo: 'jar', gallery: ['jar', 'catEveryday', 'heroDetail'],
-    short: 'Scented garden roses arranged in a reusable glass jar. No vase needed.',
-    description: 'Arranged and delivered in water, so it can go straight onto the table. We use scented garden roses where we can get them, with a little foliage and a few smaller blooms to soften the shape.',
-    sizes: [{ label: 'Standard', price: 90 }, { label: 'Generous', price: 130 }],
-    stock: 'in', tag: 'Arrives in water',
-  },
-  {
-    id: 'kangaroo-paw-bunch', name: 'Kangaroo Paw Bunch', category: 'native', photo: 'paw', gallery: ['paw', 'native', 'catNative'],
-    short: 'A simple, single-variety bunch of WA’s own kangaroo paw.',
-    description: 'Sometimes one flower says enough. A tied bunch of kangaroo paw in whatever colour is best at market — usually rust, red or soft yellow. Lasts up to two weeks with fresh water.',
-    sizes: [{ label: 'Bunch', price: 55 }],
-    stock: 'in', tag: 'Single variety',
-  },
-  {
-    id: 'dried-native-bunch', name: 'Dried Native Bunch', category: 'native', photo: 'dried', gallery: ['dried', 'catNative', 'story2'],
-    short: 'Paper daisies, grasses and seed pods that last all year.',
-    description: 'For people who love flowers but are hard on them. A bunch of air-dried natives that keeps its colour and shape for many months. Keep out of direct sun and humidity.',
-    sizes: [{ label: 'Small', price: 70 }, { label: 'Large', price: 95 }],
-    stock: 'in', tag: 'Lasts for months',
-  },
-  {
-    id: 'peace-lily', name: 'Peace Lily', category: 'plants', photo: 'lily', gallery: ['lily', 'plantsHero', 'hoya'],
-    short: 'Forgiving, glossy and happy in low light. A good first plant.',
-    description: 'Peace lilies tell you when they need water — they droop, you water, they bounce back. Delivered in a terracotta pot with a saucer and care card.',
-    sizes: [{ label: 'Medium', price: 65 }, { label: 'Large', price: 95 }],
-    stock: 'in', tag: 'Plant',
-  },
-  {
-    id: 'trailing-hoya', name: 'Trailing Hoya', category: 'plants', photo: 'hoya', gallery: ['hoya', 'plantsHero', 'lily'],
-    short: 'Waxy trailing leaves in a hanging planter, for a bright shelf or window.',
-    description: 'A slow, steady grower that rewards patience with clusters of star-shaped flowers. Comes in a hanging planter with cord.',
-    sizes: [{ label: 'Hanging', price: 55 }],
-    stock: 'out', tag: 'Plant',
-  },
-  {
-    id: 'christmas-garland', name: 'Christmas Table Garland', category: 'christmas', photo: 'garland', gallery: ['garland', 'wreath', 'catXmas'],
-    short: 'A loose run of foliage and dried accents for the Christmas table.',
-    description: 'Lay it down the middle of the table and add candles. Built from eucalyptus, olive and pine with dried native accents. Sold by length.',
-    sizes: [{ label: '1.2 m', price: 85 }, { label: '2 m', price: 130 }],
+    id: 'christmas-wreath-white', name: 'Christmas Wreath — Soft White', category: 'christmas', photo: 'e9', gallery: ['e9', 'e6', 'e11'],
+    short: 'A softer wreath in whites and greens for a classic front door.',
+    description: 'The same hand-made wreath in a palette of soft whites and greens. Finished with a natural ribbon for hanging.',
+    sizes: [{ label: '40 cm', price: 110 }, { label: '55 cm', price: 145 }],
     stock: 'low', tag: 'Seasonal',
-  },
-  {
-    id: 'seasonal-bucket', name: 'Florist’s Choice Bucket', category: 'seasonal', photo: 'seasonal', gallery: ['seasonal', 'posy', 'catSeasonal'],
-    short: 'A bucket of loose seasonal stems for you to arrange yourself.',
-    description: 'Ideal for anyone who likes to play — or for a party where you want flowers in every room. Delivered in a bucket of water, unwrapped and unarranged, with a few notes on what is in it.',
-    sizes: [{ label: 'Standard', price: 100 }, { label: 'Large', price: 150 }],
-    stock: 'in', tag: 'Arrange yourself',
   },
 ]
 
-export const featuredIds = ['seasonal-posy', 'native-garden-bouquet', 'signature-bouquet', 'phalaenopsis-orchid', 'christmas-wreath']
+export const featuredIds = ['seasonal-bouquet', 'seasonal-posy', 'native-bouquet', 'phalaenopsis-orchid', 'christmas-wreath']
+
+export const testimonials = [
+  { names: 'Julia and Lewis', text: 'I honestly couldn’t have asked for a more incredible wedding florist than Wild Flora Blooms. From the very beginning, Lora was so warm, professional, and easy to communicate with. She really took the time to understand my vision and brought it to life even more beautifully than I imagined. Lora’s creativity, attention to detail, and passion for what she does truly shines through in her work. I felt completely confident leaving everything in her hands, and she delivered above and beyond. I’m so grateful for the role she played in making our day so special. I would recommend Wild Flora Blooms to anyone without hesitation.' },
+  { names: 'Laura and Tom', text: 'Lora went out of her way to make sure my vision was captured in her designs. The flowers held up for days after the wedding. She was flexible, approachable and easy to talk to about my bouquets. We had added boutonnieres at the last minute and Lora was happy to put them together to match the bridesmaids. Everything was amazing — thank you for making my day special and perfect. She was always honest, responsive, and very professional which made my day super easy.' },
+  { names: 'Georgia and Chris', text: 'My husband and I had such a wonderful experience with Lora! From the very beginning, she was incredibly attentive and thoughtful. She took the time to call and check in on our colour palette and really took the time to understand the overall vision for our day. Lora offered fantastic ideas and suggestions that elevated everything beyond what we had imagined, while still staying true to the style we wanted. On the big day, she delivered everything right on time and set up the flowers beautifully. Every arrangement looked stunning and perfectly brought the whole wedding together. We would highly recommend her to anyone looking for a talented and reliable florist!' },
+]
+
+export const contact = {
+  phone: '0407 219 797', tel: '0407219797', email: 'wildflorablooms@gmail.com',
+  hours: 'Monday to Friday, 9am – 5pm', area: 'Coogee, just south of Perth',
+  instagram: 'https://www.instagram.com/wildflorablooms/', facebook: 'https://www.facebook.com/profile.php?id=61572138651906',
+}
 
 export const addOns = [
   { id: 'card', label: 'Hand-written card', price: 0 },
@@ -151,32 +152,31 @@ export const addOns = [
 
 export const workshops = [
   {
-    id: 'hand-tied', title: 'Seasonal Hand-Tied Bouquet', photo: 'workshop', price: 145, duration: '2.5 hours',
-    summary: 'Learn the spiral technique we use for every bouquet, then take home your own.',
-    details: 'We start with conditioning and choosing stems, then build a hand-tied bouquet using the spiral method. All flowers, tools and wrapping are provided, along with a glass of something and a grazing plate.',
+    id: 'wreath', title: 'Wreath Making Workshop', photo: 'e10', price: 145, duration: '2.5 hours',
+    summary: 'Build your own seasonal wreath with Lora, using fresh foliage, flowers and dried accents.',
+    details: 'All materials, tools and the wreath base are provided. You will learn how to layer foliage and blooms so your wreath holds its shape as it dries. Perfect for the lead-up to Christmas.',
     sessions: [
-      { id: 'ht-1', date: '2026-11-28', time: '10:00 am – 12:30 pm', capacity: 12, booked: 12 },
-      { id: 'ht-2', date: '2026-12-05', time: '10:00 am – 12:30 pm', capacity: 12, booked: 10 },
-      { id: 'ht-3', date: '2027-01-16', time: '2:00 pm – 4:30 pm', capacity: 12, booked: 3 },
+      { id: 'wr-1', date: '2026-11-28', time: '10:00 am – 12:30 pm', capacity: 10, booked: 10 },
+      { id: 'wr-2', date: '2026-12-05', time: '10:00 am – 12:30 pm', capacity: 10, booked: 8 },
+      { id: 'wr-3', date: '2026-12-12', time: '2:00 pm – 4:30 pm', capacity: 10, booked: 3 },
     ],
   },
   {
-    id: 'xmas-wreath', title: 'Christmas Wreath Workshop', photo: 'catXmas', price: 165, duration: '3 hours',
-    summary: 'Build a full native and eucalyptus wreath on a vine base to hang on your door.',
-    details: 'A December favourite. We provide the vine base, fresh and dried materials, wire and ribbon. You will learn how to build layers that hold their shape as they dry.',
+    id: 'bouquet', title: 'Create Your Own Bouquet', photo: 's3', price: 125, duration: '2 hours',
+    summary: 'Learn to build a hand-tied bouquet from locally grown, seasonal stems — then take it home.',
+    details: 'We cover conditioning, choosing stems and the spiral technique Lora uses for every bouquet. Flowers, tools and wrapping are all included.',
     sessions: [
-      { id: 'xw-1', date: '2026-12-06', time: '1:00 pm – 4:00 pm', capacity: 14, booked: 14 },
-      { id: 'xw-2', date: '2026-12-12', time: '10:00 am – 1:00 pm', capacity: 14, booked: 13 },
-      { id: 'xw-3', date: '2026-12-13', time: '10:00 am – 1:00 pm', capacity: 14, booked: 6 },
+      { id: 'bq-1', date: '2027-01-17', time: '10:00 am – 12:00 pm', capacity: 10, booked: 9 },
+      { id: 'bq-2', date: '2027-02-07', time: '10:00 am – 12:00 pm', capacity: 10, booked: 2 },
     ],
   },
   {
-    id: 'table', title: 'Table Arrangement & Vessels', photo: 'workshop2', price: 155, duration: '2.5 hours',
-    summary: 'Arrange a low table centrepiece in a vessel, using a reusable mechanic instead of foam.',
-    details: 'We cover foam-free mechanics, shape and proportion, and how to make a few stems look abundant. You take home your arrangement and the vessel.',
+    id: 'crown', title: 'Flower Crown Workshop', photo: 'e2', price: 95, duration: '1.5 hours',
+    summary: 'Make a fresh flower crown — a favourite for hens parties and birthdays.',
+    details: 'A relaxed, social session. Lora guides you through wiring and taping each bloom so your crown is comfortable and lasts through the celebration.',
     sessions: [
-      { id: 'tb-1', date: '2027-02-06', time: '10:00 am – 12:30 pm', capacity: 10, booked: 4 },
-      { id: 'tb-2', date: '2027-02-20', time: '10:00 am – 12:30 pm', capacity: 10, booked: 0 },
+      { id: 'fc-1', date: '2027-02-21', time: '11:00 am – 12:30 pm', capacity: 12, booked: 12 },
+      { id: 'fc-2', date: '2027-03-07', time: '11:00 am – 12:30 pm', capacity: 12, booked: 5 },
     ],
   },
 ]

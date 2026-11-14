@@ -1,4 +1,6 @@
-# Wild Flora Blooms — proposed website redesign (interactive mockup)
+# Wild Flora Blooms — website rebuild (React)
+
+Rebuilt in code to match the look of the current live site (Cormorant + Cantarell, #FAF5F5 / #A2AC86), with the new shop, checkout, workshops, vouchers, wedding enquiry and Xero admin concept added.
 
 React 18 + Tailwind CSS 3 + Lucide icons, built with Vite.
 
@@ -18,9 +20,9 @@ React 18 + Tailwind CSS 3 + Lucide icons, built with Vite.
     tailwind.config.js       colour + type tokens
 
 ## Photography
-Every image is an art-directed placeholder plate with a shot brief. To use real photos,
-set `src` for the matching key in `photos` (src/data.js), e.g.
-    hero: { src: '/images/hero.jpg', shot: '…', tones: [...] }
+Photos are the client's own images, loaded from the live site's image CDN (static.showit.co).
+Before launch, download them into /public/images and update `src` in `photos` (src/data.js).
+Orchid, native bouquet and voucher photos are still placeholders (src: null) — studio to supply.
 
 ## What is demo-only
 Prices, sessions, enquiries, delivery fee, payment gateway, Xero integration, emails and

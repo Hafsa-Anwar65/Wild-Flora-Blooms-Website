@@ -31,7 +31,7 @@ export default function Product() {
 
   return (
     <div>
-      <div className="wrap pt-6 text-[13px] text-ink-mute md:pt-8">
+      <div className="wrap pt-6 text-[15px] text-ink-mute md:pt-8">
         <Link to="shop" className="link-u">Shop</Link> / <Link to={`shop-${p.category}`} className="link-u">{cat?.name}</Link> / <span className="text-ink-soft">{p.name}</span>
       </div>
       <section className="wrap grid gap-10 pb-20 pt-6 md:grid-cols-12 md:gap-10 lg:gap-16">
@@ -41,7 +41,7 @@ export default function Product() {
             <div className="no-scrollbar -mx-5 flex snap-x scroll-pl-5 md:scroll-pl-0 snap-mandatory overflow-x-auto md:hidden">
               {p.gallery.map((g) => <Photo key={g} k={g} ratio="4/5" className="w-full shrink-0 snap-center" />)}
             </div>
-            <p className="mt-2 text-center text-[12px] text-ink-mute md:hidden">Swipe for more photos · {p.gallery.length}</p>
+            <p className="mt-2 text-center text-[14px] text-ink-mute md:hidden">Swipe for more photos · {p.gallery.length}</p>
             <div className="hidden gap-4 md:grid md:grid-cols-[84px_1fr]">
               <div className="flex flex-col gap-3">
                 {p.gallery.map((g, i) => (
@@ -57,10 +57,10 @@ export default function Product() {
 
         {/* Buy box */}
         <div className="md:col-span-5">
-          <p className="text-[13px] text-ink-mute">{p.tag}</p>
-          <h1 className="mt-2 text-h1 text-forest">{p.name}</h1>
+          <p className="text-[15px] text-ink-mute">{p.tag}</p>
+          <h1 className="mt-2 wf-h1">{p.name}</h1>
           <div className="mt-3 flex items-center gap-4"><p className="text-[22px] tabular-nums">{fmt(s.price)}</p><Stock stock={p.stock} /></div>
-          <p className="mt-5 text-[16px] leading-relaxed text-ink-soft">{p.description}</p>
+          <p className="mt-5 text-[18px] leading-relaxed text-ink-soft">{p.description}</p>
 
           {p.sizes.length > 1 && (
             <fieldset className="mt-8">
@@ -68,8 +68,8 @@ export default function Product() {
               <div className="grid grid-cols-3 gap-2">
                 {p.sizes.map((x, i) => (
                   <button key={x.label} type="button" onClick={() => setSize(i)} aria-pressed={i === size}
-                    className={`flex flex-col items-center justify-center rounded-[2px] border px-2 py-3 text-[14px] ${i === size ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>
-                    <span>{x.label}</span><span className="text-[13px] opacity-75">{fmt(x.price)}</span>
+                    className={`flex flex-col items-center justify-center rounded-[2px] border px-2 py-3 text-[16px] ${i === size ? 'border-forest bg-forest text-ivory' : 'border-linen bg-white/60 hover:border-forest'}`}>
+                    <span>{x.label}</span><span className="text-[15px] opacity-75">{fmt(x.price)}</span>
                   </button>
                 ))}
               </div>
@@ -89,7 +89,7 @@ export default function Product() {
             <legend className="label">Add a little extra</legend>
             <div className="space-y-2">
               {addOns.map((a) => (
-                <label key={a.id} className="flex items-center justify-between rounded-[2px] border border-linen bg-white/50 px-4 py-3 text-[15px]">
+                <label key={a.id} className="flex items-center justify-between rounded-[2px] border border-linen bg-white/50 px-4 py-3 text-[17px]">
                   <span className="flex items-center gap-3"><input type="checkbox" className="h-4 w-4 accent-forest" checked={!!extras.find((e) => e.id === a.id)} onChange={() => toggle(a)} />{a.label}</span>
                   <span className="text-ink-mute">{a.price ? `+${fmt(a.price)}` : 'Free'}</span>
                 </label>
@@ -97,8 +97,8 @@ export default function Product() {
             </div>
             {extras.find((e) => e.id === 'card') && (
               <div className="mt-3">
-                <textarea value={message} onChange={(e) => setMessage(e.target.value.slice(0, 200))} rows={3} placeholder="Happy birthday, Ellie — love from all of us." className="field resize-none font-serif text-[16px] italic" />
-                <p className="mt-1 text-right text-[12px] text-ink-mute">{message.length}/200 · hand-written by us</p>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value.slice(0, 200))} rows={3} placeholder="Happy birthday, Ellie — love from all of us." className="field resize-none font-serif text-[18px] italic" />
+                <p className="mt-1 text-right text-[14px] text-ink-mute">{message.length}/200 · hand-written by us</p>
               </div>
             )}
           </fieldset>
@@ -109,7 +109,7 @@ export default function Product() {
               {[{ id: 'delivery', icon: Truck, t: 'Delivery', d: 'Choose a date at checkout' }, { id: 'collect', icon: Store, t: 'Collect', d: 'From the studio' }].map((o) => (
                 <button key={o.id} type="button" onClick={() => setFulfil(o.id)} aria-pressed={fulfil === o.id}
                   className={`flex items-start gap-3 rounded-[2px] border p-3.5 text-left ${fulfil === o.id ? 'border-forest bg-white' : 'border-linen bg-white/50 hover:border-forest/50'}`}>
-                  <o.icon size={18} strokeWidth={1.5} className="mt-0.5 text-forest" /><span><span className="block text-[15px]">{o.t}</span><span className="text-[12.5px] text-ink-mute">{o.d}</span></span>
+                  <o.icon size={18} strokeWidth={1.5} className="mt-0.5 text-forest" /><span><span className="block text-[17px]">{o.t}</span><span className="text-[14.5px] text-ink-mute">{o.d}</span></span>
                 </button>
               ))}
             </div>
@@ -120,7 +120,7 @@ export default function Product() {
             <Button className="flex-1" size="md" disabled={sold} onClick={onAdd}>{sold ? 'Sold out this week' : `Add to bag · ${fmt2(total)}`}</Button>
           </div>
 
-          <p className="mt-4 text-[13.5px] text-ink-mute">Order by <Ph>{storeConfig.cutoffTime || 'cut-off time'}</Ph> for same-day delivery on <Ph>{storeConfig.deliveryDays || 'delivery days'}</Ph>.</p>
+          <p className="mt-4 text-[15.5px] text-ink-mute">Order by <Ph>{storeConfig.cutoffTime || 'cut-off time'}</Ph> for same-day delivery on <Ph>{storeConfig.deliveryDays || 'delivery days'}</Ph>.</p>
 
           <div className="mt-8 divide-y divide-linen border-y border-linen">
             <Accordion title="Delivery & collection" open>
@@ -138,7 +138,7 @@ export default function Product() {
 
       <section className="border-t border-linen bg-ivory-deep">
         <div className="wrap py-16 md:py-20">
-          <h2 className="text-h2 text-forest">You might also like</h2>
+          <h2 className="wf-h2">You might also like</h2>
           <div className="no-scrollbar -mx-5 mt-8 flex gap-5 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-4 md:px-0">
             {related.map((r) => <div key={r.id} className="w-[64vw] max-w-[280px] shrink-0 md:w-auto md:max-w-none"><ProductCard p={r} /></div>)}
           </div>
@@ -152,10 +152,10 @@ function Accordion({ title, open: initial = false, children }) {
   const [open, setOpen] = useState(initial)
   return (
     <div>
-      <button onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center justify-between py-4 text-left text-[15px]">
+      <button onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center justify-between py-4 text-left text-[17px]">
         {title}<ChevronDown size={17} strokeWidth={1.5} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
-      {open && <div className="pb-5 text-[14.5px] leading-relaxed text-ink-soft">{children}</div>}
+      {open && <div className="pb-5 text-[16.5px] leading-relaxed text-ink-soft">{children}</div>}
     </div>
   )
 }

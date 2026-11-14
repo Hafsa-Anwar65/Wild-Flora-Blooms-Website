@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Camera, Info } from 'lucide-react'
 import { photos } from '../data'
 import { useStore } from '../store'
@@ -30,17 +31,19 @@ function plateStyle(key) {
 }
 
 /** Photo: shows the studio photograph when `src` is set, otherwise an art-directed tonal plate with the shot brief. */
-export function Photo({ k, className = '', caption = true, ratio, children, alt }) {
+export function Photo({ k, className = '', caption = true, ratio, children, alt, position }) {
   const p = photos[k] || {}
+  const [failed, setFailed] = useState(false)
+  const show = p.src && !failed
   return (
     <div className={`relative overflow-hidden bg-linen ${className}`} style={ratio ? { aspectRatio: ratio } : undefined}>
-      {p.src ? (
-        <img src={p.src} alt={alt || p.shot} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+      {show ? (
+        <img src={p.src} alt={alt || p.alt || p.shot} onError={() => setFailed(true)} className="absolute inset-0 h-full w-full object-cover" style={position || p.pos ? { objectPosition: position || p.pos } : undefined} loading="lazy" />
       ) : (
         <div role="img" aria-label={alt || `Photograph placeholder: ${p.shot}`} className="grain absolute inset-0" style={plateStyle(k)} />
       )}
-      {!p.src && caption && (
-        <span className="pointer-events-none absolute left-3 top-3 z-[1] inline-flex max-w-[85%] items-center gap-1.5 rounded-[2px] bg-ivory/80 px-2 py-1 text-[11px] leading-tight text-ink-soft backdrop-blur-[2px]">
+      {!show && caption && (
+        <span className="pointer-events-none absolute left-3 top-3 z-[1] inline-flex max-w-[85%] items-center gap-1.5 rounded-[2px] bg-ivory/80 px-2 py-1 text-[13px] leading-tight text-ink-soft backdrop-blur-[2px]">
           <Camera size={12} strokeWidth={1.6} className="shrink-0" /> <span className="truncate">{p.shot}</span>
         </span>
       )}
@@ -52,16 +55,16 @@ export function Photo({ k, className = '', caption = true, ratio, children, alt 
 export function Button({ as = 'button', variant = 'primary', size = 'md', className = '', children, ...rest }) {
   const Tag = as
   const v = {
-    primary: 'bg-forest text-ivory hover:bg-forest-deep',
-    light: 'bg-ivory text-forest hover:bg-white',
-    outline: 'border border-forest/70 text-forest hover:bg-forest hover:text-ivory',
-    outlineLight: 'border border-ivory/70 text-ivory hover:bg-ivory hover:text-forest',
-    ghost: 'text-forest hover:bg-forest/5',
-    rose: 'bg-rose-deep text-ivory hover:bg-[#956659]',
+    primary: 'bg-sage text-white hover:bg-forest-deep',
+    light: 'bg-ivory text-ink hover:bg-white',
+    outline: 'border border-sage text-ink hover:bg-sage hover:text-white',
+    outlineLight: 'border border-white/90 text-white hover:bg-white hover:text-ink',
+    ghost: 'text-ink-soft hover:bg-sage/10',
+    rose: 'bg-sage text-white hover:bg-forest-deep',
   }[variant]
-  const s = { sm: 'h-9 px-4 text-[14px]', md: 'h-12 px-6 text-[15px]', lg: 'h-14 px-8 text-[16px]' }[size]
+  const s = { sm: 'h-10 px-5 text-[17px]', md: 'h-[46px] px-7 text-[18px]', lg: 'h-[50px] px-9 text-[19px]' }[size]
   return (
-    <Tag className={`inline-flex items-center justify-center gap-2 rounded-[2px] font-medium tracking-[0.01em] transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${v} ${s} ${className}`} {...rest}>
+    <Tag className={`inline-flex items-center justify-center gap-2 rounded-[10px] font-serif italic tracking-[0.06em] transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${v} ${s} ${className}`} {...rest}>
       {children}
     </Tag>
   )
@@ -75,7 +78,7 @@ export function Ph({ children }) {
 export function DemoNote({ children, className = '', tone = 'sage' }) {
   const t = tone === 'dark' ? 'bg-forest-soft/40 text-ivory/90 border-ivory/20' : 'bg-sage-pale text-ink-soft border-sage-light'
   return (
-    <div className={`flex items-start gap-2.5 rounded-[3px] border px-3.5 py-2.5 text-[13px] leading-snug ${t} ${className}`}>
+    <div className={`flex items-start gap-2.5 rounded-[3px] border px-3.5 py-2.5 text-[15px] leading-snug ${t} ${className}`}>
       <Info size={15} strokeWidth={1.7} className="mt-[1px] shrink-0" />
       <div>{children}</div>
     </div>
@@ -87,15 +90,15 @@ export function Field({ label, error, hint, children, className = '' }) {
     <label className={`block ${className}`}>
       <span className="label">{label}</span>
       {children}
-      {error ? <span className="mt-1.5 block text-[13px] text-clay">{error}</span> : hint ? <span className="mt-1.5 block text-[13px] text-ink-mute">{hint}</span> : null}
+      {error ? <span className="mt-1.5 block text-[15px] text-clay">{error}</span> : hint ? <span className="mt-1.5 block text-[15px] text-ink-mute">{hint}</span> : null}
     </label>
   )
 }
 
 export function Stock({ stock }) {
-  if (stock === 'out') return <span className="text-[13px] text-clay">Sold out this week</span>
-  if (stock === 'low') return <span className="text-[13px] text-rose-deep">Only a few left</span>
-  return <span className="text-[13px] text-sage">Available</span>
+  if (stock === 'out') return <span className="text-[15px] italic text-clay">Sold out this week</span>
+  if (stock === 'low') return <span className="text-[15px] italic text-rose-deep">Only a few left</span>
+  return <span className="text-[15px] italic text-forest-deep">Available</span>
 }
 
 export function Qty({ value, onChange, min = 1, max = 20, small }) {
@@ -103,7 +106,7 @@ export function Qty({ value, onChange, min = 1, max = 20, small }) {
   return (
     <div className={`inline-flex ${h} items-center rounded-[2px] border border-linen bg-white/60`}>
       <button type="button" aria-label="Decrease quantity" onClick={() => onChange(Math.max(min, value - 1))} className={`${small ? 'w-8' : 'w-11'} h-full text-lg text-ink-soft hover:text-forest disabled:opacity-30`} disabled={value <= min}>−</button>
-      <span className={`${small ? 'w-6 text-[14px]' : 'w-8'} text-center tabular-nums`} aria-live="polite">{value}</span>
+      <span className={`${small ? 'w-6 text-[16px]' : 'w-8'} text-center tabular-nums`} aria-live="polite">{value}</span>
       <button type="button" aria-label="Increase quantity" onClick={() => onChange(Math.min(max, value + 1))} className={`${small ? 'w-8' : 'w-11'} h-full text-lg text-ink-soft hover:text-forest disabled:opacity-30`} disabled={value >= max}>+</button>
     </div>
   )
@@ -117,10 +120,10 @@ export function Link({ to, className = '', children, ...rest }) {
 export function PageIntro({ kicker, title, children, tone = 'ivory' }) {
   return (
     <div className={tone === 'sage' ? 'bg-sage-pale' : tone === 'rose' ? 'bg-rose-pale' : 'bg-ivory-deep'}>
-      <div className="wrap pb-12 pt-14 md:pb-16 md:pt-20">
-        {kicker && <p className="mb-4 font-serif text-[17px] italic text-ink-soft">{kicker}</p>}
-        <h1 className="max-w-[18ch] text-h1 text-forest">{title}</h1>
-        {children && <div className="mt-5 max-w-[58ch] text-[17px] text-ink-soft">{children}</div>}
+      <div className="wrap pb-12 pt-14 text-center md:pb-16 md:pt-20">
+        {kicker && <p className="mb-4 font-serif text-[19px] italic text-ink-soft">{kicker}</p>}
+        <h1 className="wf-h1">{title}</h1>
+        {children && <div className="wf-lead mx-auto mt-5 max-w-[60ch] text-[19px]">{children}</div>}
       </div>
     </div>
   )

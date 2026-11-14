@@ -17,18 +17,18 @@ export default function Workshops() {
   return (
     <div>
       <section className="relative">
-        <Photo k="workshop2" caption={false} className="h-[52vh] min-h-[380px]">
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 to-forest-deep/10" />
+        <Photo k="e10" caption={false} className="h-[52vh] min-h-[380px]">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/5" />
           <div className="wrap relative flex h-full flex-col justify-end pb-12 text-ivory">
-            <p className="font-serif text-[17px] italic text-ivory/80">Workshops</p>
-            <h1 className="mt-3 max-w-[16ch] text-h1">Create something beautiful.</h1>
-            <p className="mt-4 max-w-[52ch] text-[17px] text-ivory/85">Small groups, good flowers and no experience needed. Everything is supplied — just bring yourself.</p>
+            <p className="font-serif text-[19px] italic text-ivory/80">Workshops</p>
+            <h1 className="mt-3 wf-h1 !text-white">Floral workshops in Coogee &amp; Perth</h1>
+            <p className="mt-4 max-w-[52ch] text-[19px] text-ivory/85">Wreath making, create your own bouquets and flower crowns in Coogee. Join a group session below, or book a private workshop for your hens party, birthday or special occasion.</p>
           </div>
         </Photo>
       </section>
 
       <section className="wrap py-16 md:py-24">
-        <div className="mb-10 grid gap-4 border-b border-linen pb-8 text-[15px] text-ink-soft sm:grid-cols-3">
+        <div className="mb-10 grid gap-4 border-b border-linen pb-8 text-[17px] text-ink-soft sm:grid-cols-3">
           <p><span className="block font-serif text-[20px] text-ink">Where</span><Ph>studio address</Ph></p>
           <p><span className="block font-serif text-[20px] text-ink">Included</span>Flowers, tools, wrapping and a grazing plate</p>
           <p><span className="block font-serif text-[20px] text-ink">Group size</span>Up to 10–14 people, depending on the class</p>
@@ -39,15 +39,15 @@ export default function Workshops() {
             <article key={w.id} className="grid gap-8 md:grid-cols-12 md:gap-10">
               <div className={`md:col-span-5 ${wi % 2 ? 'md:order-2 md:col-start-8' : ''}`}><Photo k={w.photo} ratio="4/5" /></div>
               <div className={`md:col-span-7 ${wi % 2 ? 'md:order-1 md:col-start-1 md:row-start-1' : ''}`}>
-                <h2 className="text-h2 text-forest">{w.title}</h2>
-                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[14px] text-ink-mute">
+                <h2 className="wf-h2">{w.title}</h2>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[16px] text-ink-mute">
                   <span className="flex items-center gap-1.5"><Clock size={15} strokeWidth={1.5} />{w.duration}</span>
                   <span>{fmt(w.price)} per person</span>
                 </div>
-                <p className="mt-5 max-w-[56ch] text-[16.5px] text-ink">{w.summary}</p>
+                <p className="mt-5 max-w-[56ch] text-[18.5px] text-ink">{w.summary}</p>
                 <p className="mt-3 max-w-[56ch] text-ink-soft">{w.details}</p>
 
-                <h3 className="mt-8 text-[15px] font-sans font-medium text-ink">Choose a session</h3>
+                <h3 className="mt-8 text-[17px] font-sans font-medium text-ink">Choose a session</h3>
                 <ul className="mt-3 divide-y divide-linen border-y border-linen">
                   {w.sessions.map((s) => {
                     const left = s.capacity - s.booked
@@ -57,11 +57,11 @@ export default function Workshops() {
                       <li key={s.id} className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-3 py-4 sm:grid-cols-[1fr_160px_auto]">
                         <div>
                           <p className="font-serif text-[19px] leading-tight">{niceDate(s.date, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
-                          <p className="text-[14px] text-ink-mute">{s.time}</p>
+                          <p className="text-[16px] text-ink-mute">{s.time}</p>
                         </div>
                         <div className="col-span-2 row-start-2 sm:col-span-1 sm:row-start-auto">
                           <div className="h-1 w-full overflow-hidden rounded-full bg-linen" aria-hidden><div className={`h-full ${full ? 'bg-clay' : left <= 2 ? 'bg-rose-deep' : 'bg-sage'}`} style={{ width: `${pct}%` }} /></div>
-                          <p className={`mt-1.5 flex items-center gap-1.5 text-[13px] ${full ? 'text-clay' : left <= 2 ? 'text-rose-deep' : 'text-ink-mute'}`}><Users size={13} strokeWidth={1.6} />{full ? `Fully booked · ${s.capacity} of ${s.capacity}` : `${left} of ${s.capacity} places left`}</p>
+                          <p className={`mt-1.5 flex items-center gap-1.5 text-[15px] ${full ? 'text-clay' : left <= 2 ? 'text-rose-deep' : 'text-ink-mute'}`}><Users size={13} strokeWidth={1.6} />{full ? `Fully booked · ${s.capacity} of ${s.capacity}` : `${left} of ${s.capacity} places left`}</p>
                         </div>
                         <Button size="sm" variant={full ? 'ghost' : 'primary'} disabled={full} onClick={() => { setSel({ wid: w.id, sid: s.id }); setConfirmed(null) }} aria-label={full ? 'Fully booked' : `Book ${w.title} on ${s.date}`}>
                           {full ? 'Fully booked' : 'Book'}
@@ -70,7 +70,7 @@ export default function Workshops() {
                     )
                   })}
                 </ul>
-                {w.sessions.some((s) => s.booked >= s.capacity) && <p className="mt-3 text-[13px] text-ink-mute">Fully booked sessions can’t be selected. <button className="link-u text-forest" onClick={() => flash('Waitlist request noted (demo)')}>Join the waitlist</button> and we’ll let you know if a place opens.</p>}
+                {w.sessions.some((s) => s.booked >= s.capacity) && <p className="mt-3 text-[15px] text-ink-mute">Fully booked sessions can’t be selected. <button className="link-u text-forest" onClick={() => flash('Waitlist request noted (demo)')}>Join the waitlist</button> and we’ll let you know if a place opens.</p>}
               </div>
             </article>
           ))}
@@ -104,7 +104,7 @@ function BookingSheet({ w, s, onClose, onBook, confirmed }) {
 
   return (
     <div className="fixed inset-0 z-[60] flex justify-end" role="dialog" aria-modal="true" aria-label="Book a workshop">
-      <div className="fade-in absolute inset-0 bg-forest-deep/40" onClick={onClose} />
+      <div className="fade-in absolute inset-0 bg-black/35" onClick={onClose} />
       <div className="drawer-in relative flex h-full w-full max-w-[520px] flex-col overflow-y-auto bg-ivory">
         <div className="flex items-center justify-between border-b border-linen px-6 py-5">
           <p className="font-serif text-[24px] text-forest">{confirmed ? 'Booking confirmed' : 'Book your place'}</p>
@@ -112,8 +112,8 @@ function BookingSheet({ w, s, onClose, onBook, confirmed }) {
         </div>
         <div className="border-b border-linen bg-ivory-deep px-6 py-5">
           <p className="font-serif text-[20px]">{w.title}</p>
-          <p className="text-[14px] text-ink-mute">{niceDate(s.date, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} · {s.time}</p>
-          <p className={`mt-1 text-[13px] ${left <= 0 ? 'text-clay' : 'text-ink-soft'}`}>{left <= 0 ? 'Now fully booked' : `${left} of ${s.capacity} places left`}</p>
+          <p className="text-[16px] text-ink-mute">{niceDate(s.date, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} · {s.time}</p>
+          <p className={`mt-1 text-[15px] ${left <= 0 ? 'text-clay' : 'text-ink-soft'}`}>{left <= 0 ? 'Now fully booked' : `${left} of ${s.capacity} places left`}</p>
         </div>
 
         {confirmed ? (
@@ -121,7 +121,7 @@ function BookingSheet({ w, s, onClose, onBook, confirmed }) {
             <span className="grid h-12 w-12 place-items-center rounded-full bg-sage-pale text-forest"><Check size={22} /></span>
             <p className="mt-5 font-serif text-[28px] leading-tight text-forest">See you at the studio, {confirmed.name.split(' ')[0]}.</p>
             <p className="mt-3 text-ink-soft">Booking {confirmed.ref} · {confirmed.seats} {confirmed.seats === 1 ? 'place' : 'places'} · {fmt2(confirmed.seats * w.price)}. A confirmation would be emailed to {confirmed.email}.</p>
-            <p className="mt-3 text-[14px] text-ink-mute">The session now shows {left} {left === 1 ? 'place' : 'places'} remaining{left <= 0 ? ' and is closed to new bookings' : ''}.</p>
+            <p className="mt-3 text-[16px] text-ink-mute">The session now shows {left} {left === 1 ? 'place' : 'places'} remaining{left <= 0 ? ' and is closed to new bookings' : ''}.</p>
             <DemoNote className="mt-6">Demo booking: no payment was taken and no email was sent.</DemoNote>
             <Button className="mt-6 w-full" onClick={onClose}>Done</Button>
           </div>
@@ -133,18 +133,18 @@ function BookingSheet({ w, s, onClose, onBook, confirmed }) {
               </Field>
               <p className="pb-3 text-right font-serif text-[22px] tabular-nums">{fmt2(seats * w.price)}</p>
             </div>
-            <p className="mt-2 text-[13px] text-ink-mute">You can book up to {Math.min(6, left)} {Math.min(6, left) === 1 ? 'place' : 'places'} — the selector stops at what’s left.</p>
+            <p className="mt-2 text-[15px] text-ink-mute">You can book up to {Math.min(6, left)} {Math.min(6, left) === 1 ? 'place' : 'places'} — the selector stops at what’s left.</p>
             <div className="mt-6 grid gap-4">
               <Field label="Full name" error={err.name}><input value={f.name} onChange={set('name')} className={`field ${err.name ? 'field-err' : ''}`} autoComplete="name" /></Field>
               <Field label="Email" error={err.email}><input type="email" value={f.email} onChange={set('email')} className={`field ${err.email ? 'field-err' : ''}`} autoComplete="email" /></Field>
               <Field label="Phone" error={err.phone}><input type="tel" value={f.phone} onChange={set('phone')} className={`field ${err.phone ? 'field-err' : ''}`} autoComplete="tel" /></Field>
               <Field label="Dietary needs or allergies (optional)" hint="For the grazing plate."><input value={f.diet} onChange={set('diet')} className="field" /></Field>
             </div>
-            <div className="mt-6 rounded-[3px] border border-dashed border-sage bg-sage-pale/50 p-4 text-[14px] text-ink-soft">
+            <div className="mt-6 rounded-[3px] border border-dashed border-sage bg-sage-pale/50 p-4 text-[16px] text-ink-soft">
               <p className="flex items-center gap-2 text-forest"><Lock size={15} /> Online payment placeholder</p>
               <p className="mt-1">Payment would be taken securely via the studio’s chosen gateway before the place is confirmed.</p>
             </div>
-            <p id="waitlist-note" className="mt-4 text-[13px] text-ink-mute">Cancellation and transfer policy: <Ph>to be confirmed by the studio</Ph></p>
+            <p id="waitlist-note" className="mt-4 text-[15px] text-ink-mute">Cancellation and transfer policy: <Ph>to be confirmed by the studio</Ph></p>
             <Button type="submit" size="lg" className="mt-auto w-full" disabled={left <= 0}>Pay & confirm booking · {fmt2(seats * w.price)}</Button>
           </form>
         )}

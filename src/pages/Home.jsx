@@ -1,274 +1,292 @@
 import { useState } from 'react'
-import { Instagram } from '../components/icons'
-import { Photo, Button, Link, Ph } from '../components/ui'
+import { Phone, ChevronLeft, ChevronRight, Truck, Store, CalendarDays } from 'lucide-react'
+import { Instagram, Facebook } from '../components/icons'
+import { Photo, Button, Link, Field, DemoNote } from '../components/ui'
+import { Wordmark } from '../components/Layout'
 import { ProductCard, QuickShop } from '../components/ProductCard'
-import { categories, products, featuredIds, workshops, niceDate, fmt } from '../data'
+import { products, featuredIds, galleries, testimonials, contact, workshops, niceDate, fmt } from '../data'
 import { useStore } from '../store'
 
 export default function Home() {
   const [quick, setQuick] = useState(null)
   return (
     <>
-      <Hero />
-      <Categories />
-      <Featured onQuick={setQuick} />
-      <Weddings />
-      <WorkshopsTeaser />
-      <PlantsSeasonal />
-      <Voucher />
-      <Story />
-      <Gallery />
+      <Intro />
+      <ShopStrip onQuick={setQuick} />
+      <About />
+      <Services />
+      <QuoteBand />
+      <Arrangements />
+      <WorkshopsAndVouchers />
+      <Reviews />
+      <ContactSection />
       <QuickShop p={quick} onClose={() => setQuick(null)} />
     </>
   )
 }
 
-function Hero() {
+/* Section heading in the live site's style: small Cantarell caps, centred. */
+export function SectionTitle({ children, as: Tag = 'h2', className = '', light }) {
+  return <Tag className={`wf-h2 text-center ${light ? '!text-white' : ''} ${className}`}>{children}</Tag>
+}
+
+function Intro() {
   const { go } = useStore()
   return (
-    <section className="relative">
-      <Photo k="hero" caption={false} className="h-[78svh] min-h-[540px] md:h-[86vh] md:max-h-[880px]">
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-forest-deep/20 to-transparent md:bg-gradient-to-r md:from-forest-deep/70 md:via-forest-deep/25" />
-        <div className="wrap relative flex h-full flex-col justify-end pb-12 md:justify-center md:pb-0">
-          <div className="hero-in max-w-[640px] text-ivory">
-            <p className="font-serif text-[18px] italic text-ivory/85">Wild Flora Blooms, Perth</p>
-            <h1 className="mt-4 text-display">Flowers for the moments that matter.</h1>
-            <p className="mt-6 max-w-[48ch] text-[17px] leading-relaxed text-ivory/85">Thoughtfully curated blooms, seasonal arrangements and beautiful floral styling for everyday moments and special occasions.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button variant="light" size="lg" onClick={() => go('shop')}>Shop Flowers</Button>
-              <Button variant="outlineLight" size="lg" onClick={() => go('weddings')}>Explore Weddings</Button>
-            </div>
+    <section className="bg-ivory">
+      <div className="wrap grid items-center gap-10 py-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:gap-14 md:py-20">
+        <div className="flex justify-center">
+          <Wordmark size="lg" className="max-w-full object-contain" />
+        </div>
+        <div className="hero-in">
+          <h1 className="wf-h1 text-center md:text-left">Seasonal florist & flower delivery in Coogee and Perth</h1>
+          <div className="wf-body mt-6 space-y-5 text-[18px] text-ink-soft">
+            <p>Wild Flora Blooms services Coogee and surrounding Perth areas specialising in seasonal, locally grown flowers for weddings, events and beautiful everyday bouquets.</p>
+            <p>By prioritising locally sourced blooms that reflect the changing seasons, Wild Flora Blooms creates naturally beautiful floral designs while consciously reducing environmental impact.</p>
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button onClick={() => go('shop')}>Shop bouquets</Button>
+            <Button onClick={() => go('weddings')}>Wedding & event enquiry</Button>
+          </div>
+          <ul className="mt-8 grid gap-2 font-serif text-[16px] italic text-ink-soft sm:grid-cols-3">
+            <li className="flex items-center gap-2"><Truck size={16} strokeWidth={1.4} className="text-sage" />Local delivery</li>
+            <li className="flex items-center gap-2"><Store size={16} strokeWidth={1.4} className="text-sage" />Studio collection</li>
+            <li className="flex items-center gap-2"><CalendarDays size={16} strokeWidth={1.4} className="text-sage" />Choose your date</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* New: makes everyday bouquets and delivery prominent, straight after the intro. */
+function ShopStrip({ onQuick }) {
+  const items = featuredIds.slice(0, 4).map((id) => products.find((p) => p.id === id))
+  return (
+    <section className="border-t border-linen bg-ivory">
+      <div className="wrap py-16 md:py-20">
+        <SectionTitle>Flowers delivered across Perth</SectionTitle>
+        <p className="wf-lead mx-auto mt-5 max-w-[62ch] text-center text-[18px]">Seasonal and native bouquets, Phalaenopsis orchids and ready-made Christmas wreaths — order online for delivery or collection.</p>
+        <div className="no-scrollbar -mx-5 mt-12 flex snap-x scroll-pl-5 gap-5 overflow-x-auto px-5 md:mx-0 md:grid md:scroll-pl-0 md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0">
+          {items.map((p) => <div key={p.id} className="w-[70vw] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none"><ProductCard p={p} onQuick={onQuick} /></div>)}
+        </div>
+        <div className="mt-12 flex justify-center"><Button as="a" href="#shop" onClick={(e) => { e.preventDefault(); window.location.hash = 'shop' }}>Shop all flowers</Button></div>
+      </div>
+    </section>
+  )
+}
+
+function About() {
+  return (
+    <section className="bg-sage text-white" id="about">
+      <div className="wrap grid items-center gap-10 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-14 md:py-20">
+        <div>
+          <h2 className="wf-h2 !text-white">About Wild Flora Blooms</h2>
+          <div className="wf-body mt-6 space-y-5 text-[18px] text-white/95">
+            <p>Hi, I’m Lora, the florist behind Wild Flora Blooms, based in Coogee, just south of Perth.</p>
+            <p>I create natural, seasonal floral arrangements using locally grown blooms wherever possible, with a focus on a more thoughtful and sustainable approach.</p>
+            <p>From wedding flowers and event styling to handcrafted bouquets, I work closely with my clients to bring their ideas to life in a way that feels modern, earthy, and true to them. I also offer private floral workshops, including wreath making, create your own bouquets and flower crown sessions for hens parties, birthdays and special occasions.</p>
+            <p>I’d love to hear from you and help create something beautiful for your moment.</p>
           </div>
         </div>
-      </Photo>
-      {/* Editorial inset — this week at the studio */}
-      <div className="wrap relative hidden lg:block">
-        <Link to="product-seasonal-posy" className="absolute -top-[260px] right-12 block w-[250px] bg-ivory p-3 shadow-[0_24px_50px_-30px_rgba(0,0,0,.5)]">
-          <Photo k="heroDetail" caption={false} ratio="4/5" />
-          <p className="mt-3 font-serif text-[17px] leading-snug text-forest">This week’s posy</p>
-          <p className="text-[13px] text-ink-mute">Ranunculus, sweet pea and garden roses · from {fmt(65)}</p>
-        </Link>
-      </div>
-      <p className="wrap mt-3 text-[12px] text-ink-mute">Hero photograph: loose garden armful on the studio bench, side light — to be shot.</p>
-    </section>
-  )
-}
-
-function Categories() {
-  const span = ['md:col-span-5 md:row-span-2', 'md:col-span-4', 'md:col-span-3', 'md:col-span-3', 'md:col-span-4']
-  return (
-    <section className="wrap pt-20 md:pt-28">
-      <div className="mb-8 flex items-end justify-between gap-6 md:mb-10">
-        <h2 className="text-h2 text-forest">Shop by flower</h2>
-        <Link to="shop" className="hidden text-[15px] text-ink-soft link-u sm:inline">See the whole shop</Link>
-      </div>
-      <div className="no-scrollbar -mx-5 flex snap-x scroll-pl-5 md:scroll-pl-0 gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-12 md:auto-rows-[340px] md:gap-5 lg:auto-rows-[380px] md:overflow-visible md:px-0">
-        {categories.map((c, i) => (
-          <Link key={c.id} to={`shop-${c.id}`} className={`group block w-[66vw] max-w-[300px] shrink-0 snap-start md:flex md:w-auto md:max-w-none md:flex-col ${span[i]}`}>
-            <Photo k={c.photo} caption={false} className="aspect-[3/4] md:aspect-auto md:min-h-0 md:flex-1" />
-            <div className="mt-3 flex items-baseline justify-between">
-              <h3 className="text-[21px] leading-tight group-hover:text-forest">{c.name}</h3>
-              <span className="text-[13px] text-ink-mute">{products.filter((p) => p.category === c.id).length} styles</span>
-            </div>
-          </Link>
-        ))}
+        <Photo k="lora" className="aspect-[425/476] w-full" position="center top" />
       </div>
     </section>
   )
 }
 
-function Featured({ onQuick }) {
-  const items = featuredIds.map((id) => products.find((p) => p.id === id))
-  const [lead, ...rest] = [items[2], items[0], items[1], items[3], items[4]]
-  return (
-    <section className="wrap pt-24 md:pt-32">
-      <div className="grid gap-10 md:grid-cols-12 md:gap-6">
-        <div className="md:col-span-4 md:pr-8">
-          <h2 className="text-h2 text-forest">Made to bring a little joy.</h2>
-          <p className="mt-4 max-w-[38ch] text-ink-soft">Designed in the studio each morning with what’s best at market. Every bouquet is a little different — that’s rather the point.</p>
-          <Link to="shop" className="mt-6 inline-block text-[15px] text-forest link-u">Shop all flowers</Link>
-          <p className="mt-10 hidden text-[12px] text-ink-mute md:block">Prices shown are illustrative for this mockup.</p>
-        </div>
-        <div className="md:col-span-8">
-          <ProductCard p={lead} ratio="5/4" large onQuick={onQuick} />
-        </div>
-      </div>
-      <div className="no-scrollbar -mx-5 mt-14 flex snap-x scroll-pl-5 md:scroll-pl-0 gap-5 overflow-x-auto px-5 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0">
-        {rest.map((p, i) => (
-          <div key={p.id} className={`w-[72vw] max-w-[320px] shrink-0 snap-start md:w-auto md:max-w-none ${i % 2 ? 'md:mt-16' : ''}`}>
-            <ProductCard p={p} onQuick={onQuick} />
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
+const SERVICES = [
+  { title: 'Wedding Florist', photo: 'w4', text: 'Seasonal wedding flowers designed to complement your celebration, including bridal bouquets, ceremony flowers and reception arrangements.', to: 'weddings', cta: 'Wedding enquiry' },
+  { title: 'Event Florist', photo: 'e3', text: 'Floral styling for events, celebrations, and corporate functions, designed to create a natural and cohesive atmosphere.', to: 'weddings', cta: 'Event enquiry' },
+  { title: 'Seasonal Bouquets', photo: 's1', text: 'Fresh bouquets created using locally sourced blooms that reflect the colours and textures of the current season.', to: 'shop', cta: 'Shop bouquets' },
+  { title: 'Private Workshops', photo: 'e10', text: 'Private floral workshops designed for hens parties, birthdays and special occasions. Including wreath making, flower crowns, and create your own bouquets.', to: 'workshops', cta: 'Book a workshop' },
+]
 
-function Weddings() {
-  const { go } = useStore()
+function Services() {
   return (
-    <section className="mt-28 bg-forest text-ivory md:mt-36">
-      <div className="wrap grid gap-12 py-20 md:grid-cols-12 md:gap-8 md:py-28">
-        <div className="order-2 md:order-1 md:col-span-5 md:self-center">
-          <p className="font-serif text-[17px] italic text-ivory/70">Weddings & events</p>
-          <h2 className="mt-3 text-h1">Flowers that tell your story.</h2>
-          <p className="mt-6 max-w-[44ch] text-[17px] leading-relaxed text-ivory/80">From intimate celebrations to unforgettable wedding days, we create thoughtful floral designs that bring your vision to life.</p>
-          <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-ivory/15 pt-8 text-[15px]">
-            {[['Bridal party', 'Bouquets, buttonholes, flower crowns'], ['Ceremony', 'Arbours, aisle meadows, signage florals'], ['Reception', 'Long tables, bud vases, centrepieces'], ['Installations', 'Hanging florals and statement pieces']].map(([t, d]) => (
-              <div key={t}><dt className="font-serif text-[19px] text-ivory">{t}</dt><dd className="mt-1 text-ivory/65">{d}</dd></div>
-            ))}
-          </dl>
-          <Button variant="light" size="lg" className="mt-10" onClick={() => go('weddings')}>Enquire About Wedding Flowers</Button>
-        </div>
-        <div className="order-1 grid grid-cols-6 grid-rows-[auto_auto] gap-3 md:order-2 md:col-span-7 md:gap-4">
-          <Photo k="wedding1" className="col-span-4 row-span-2 aspect-[3/4]" />
-          <Photo k="wedding2" className="col-span-2 aspect-[3/4]" caption={false} />
-          <Photo k="wedding3" className="col-span-2 aspect-[3/4]" caption={false} />
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function WorkshopsTeaser() {
-  const { go } = useStore()
-  const sessions = workshops.flatMap((w) => w.sessions.map((s) => ({ ...s, w }))).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4)
-  return (
-    <section className="wrap grid gap-12 pt-24 md:grid-cols-12 md:gap-10 md:pt-32">
-      <div className="md:col-span-5">
-        <Photo k="workshop" ratio="4/5" />
-      </div>
-      <div className="md:col-span-7 md:pl-6 md:pt-6">
-        <h2 className="text-h2 text-forest">Create something beautiful.</h2>
-        <p className="mt-4 max-w-[52ch] text-ink-soft">Small-group workshops in the studio. We supply the flowers, tools and a grazing plate; you leave with something you made and a few tricks for the vase at home.</p>
-        <ul className="mt-10 border-t border-linen">
-          {sessions.map((s) => {
-            const left = s.capacity - s.booked
-            const full = left <= 0
-            return (
-              <li key={s.id} className="grid grid-cols-[64px_1fr] items-center gap-4 border-b border-linen py-5 sm:grid-cols-[72px_1fr_auto]">
-                <div className="text-center leading-none">
-                  <span className="block font-serif text-[34px] text-forest">{new Date(s.date + 'T00:00').getDate()}</span>
-                  <span className="text-[12px] text-ink-mute">{niceDate(s.date, { month: 'short' })}</span>
-                </div>
-                <div>
-                  <p className="font-serif text-[20px] leading-tight">{s.w.title}</p>
-                  <p className="mt-1 text-[14px] text-ink-mute">{niceDate(s.date, { weekday: 'long' })}, {s.time} · {fmt(s.w.price)}</p>
-                  <p className={`mt-1 text-[13px] ${full ? 'text-clay' : left <= 2 ? 'text-rose-deep' : 'text-sage'}`}>{full ? 'Fully booked' : `${left} of ${s.capacity} places left`}</p>
-                </div>
-                <div className="col-span-2 sm:col-span-1">
-                  <Button size="sm" variant={full ? 'ghost' : 'outline'} disabled={full} onClick={() => go(`workshops`)}>{full ? 'Waitlist only' : 'Book a place'}</Button>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-        <Link to="workshops" className="mt-6 inline-block text-[15px] text-forest link-u">All workshops and dates</Link>
-      </div>
-    </section>
-  )
-}
-
-function PlantsSeasonal() {
-  return (
-    <section className="mt-28 bg-sage-pale md:mt-36">
-      <div className="wrap grid gap-10 py-20 md:grid-cols-12 md:gap-8 md:py-24">
-        <div className="md:col-span-7 md:order-2">
-          <Photo k="plantsHero" className="aspect-[4/3] md:aspect-[5/4]" />
-        </div>
-        <div className="flex flex-col md:col-span-5 md:order-1 md:pr-8">
-          <p className="font-serif text-[17px] italic text-ink-soft">Indoor plants</p>
-          <h2 className="mt-3 text-h2 text-forest">Orchids that outlast the bouquet.</h2>
-          <p className="mt-4 max-w-[44ch] text-ink-soft">Our Phalaenopsis orchids arrive potted in simple ceramic with a care card. Give them bright, indirect light and a little water once a week, and they’ll flower for months.</p>
-          <div className="mt-6 flex gap-4">
-            <Button onClick={() => (window.location.hash = 'product-phalaenopsis-orchid')}>Shop orchids</Button>
-            <Button variant="outline" onClick={() => (window.location.hash = 'shop-plants')}>All plants</Button>
-          </div>
-          <div className="mt-auto pt-14">
-            <Link to="shop-seasonal" className="group grid grid-cols-[112px_1fr] items-center gap-5 border-t border-sage-light pt-6">
-              <Photo k="seasonal" caption={false} ratio="1/1" />
-              <div>
-                <p className="text-[13px] text-ink-mute">The seasonal collection</p>
-                <p className="mt-1 font-serif text-[22px] leading-tight group-hover:text-forest">What’s in the buckets this week — it changes as the season does.</p>
-              </div>
+    <section className="bg-ivory" id="services">
+      <div className="wrap py-16 md:py-20">
+        <SectionTitle>Floral services</SectionTitle>
+        <p className="wf-lead mx-auto mt-5 max-w-[62ch] text-center text-[18px]">Wild Flora Blooms provides floral design services for weddings, events and custom bouquets throughout Coogee and the Perth region.</p>
+        <div className="mt-12 grid gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          {SERVICES.map((s) => (
+            <Link key={s.title} to={s.to} className="group block text-center">
+              <Photo k={s.photo} caption={false} ratio="2/3" className="transition-opacity group-hover:opacity-90" />
+              <h3 className="mt-6 font-serif text-[20px] italic tracking-[0.08em]">{s.title}</h3>
+              <p className="mx-auto mt-4 max-w-[30ch] font-serif text-[17px] italic leading-[1.6] tracking-[0.06em] text-ink-soft">{s.text}</p>
+              <span className="mt-4 inline-block font-caps text-[11.5px] uppercase tracking-[0.2em] text-sage group-hover:text-forest-deep">{s.cta}</span>
             </Link>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-export function VoucherCard({ amount = 100, to = 'Someone lovely', from = 'You', message, className = '' }) {
+function QuoteBand() {
+  const { go } = useStore()
   return (
-    <div className={`relative aspect-[1.6/1] w-full overflow-hidden bg-ivory p-6 shadow-[0_30px_60px_-36px_rgba(30,40,32,.55)] sm:p-8 ${className}`}>
-      <div className="absolute inset-3 border border-rose-deep/30" />
-      <div className="relative flex h-full flex-col">
-        <div className="flex items-start justify-between">
-          <div className="leading-none text-forest"><span className="font-serif text-[15px] tracking-[0.28em]">WILD FLORA</span><span className="mt-1 block text-[8px] tracking-[0.6em]">BLOOMS</span></div>
-          <span className="font-serif text-[15px] italic text-rose-deep">Gift voucher</span>
+    <section className="bg-sage text-white">
+      <div className="wrap py-14 text-center">
+        <p className="mx-auto max-w-[70ch] font-serif text-[18px] italic leading-[1.7] tracking-[0.08em]">Planning something special? Whether you’re organising a wedding, event or looking for a beautiful bouquet, Wild Flora Blooms would love to hear about your ideas and create something truly memorable.</p>
+        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+          <Button variant="outlineLight" className="sm:w-[235px]" onClick={() => go('weddings')}>Request a Quote</Button>
+          <Button as="a" variant="outlineLight" className="sm:w-[235px]" href={`tel:${contact.tel}`}>Call Today</Button>
         </div>
-        <p className="mt-auto font-serif text-[52px] leading-none text-forest sm:text-[64px]">${amount}</p>
-        <p className="mt-3 truncate text-[13px] text-ink-soft">For {to || '—'} · from {from || '—'}</p>
-        {message && <p className="mt-1 line-clamp-1 font-serif text-[14px] italic text-ink-soft">“{message}”</p>}
+      </div>
+    </section>
+  )
+}
+
+function Strip({ title, keys }) {
+  return (
+    <div className="mt-14">
+      <h3 className="text-center font-serif text-[20px] italic tracking-[0.08em]">{title}</h3>
+      <div className="no-scrollbar mt-6 flex gap-2 overflow-x-auto" tabIndex={0} aria-label={`${title} gallery`}>
+        {keys.map((k) => <Photo key={k} k={k} caption={false} className="h-[260px] w-[200px] shrink-0 sm:h-[340px] sm:w-[260px]" />)}
       </div>
     </div>
   )
 }
 
-function Voucher() {
+function Arrangements() {
   const { go } = useStore()
   return (
-    <section className="bg-rose-pale">
-      <div className="wrap grid items-center gap-12 py-20 md:grid-cols-2 md:py-24">
-        <div className="mx-auto w-full max-w-[460px] -rotate-2">
-          <VoucherCard amount={150} to="Mum" from="Ellie" />
+    <section className="bg-ivory py-16 md:py-20" id="portfolio">
+      <div className="wrap">
+        <SectionTitle>Our arrangements</SectionTitle>
+        <p className="wf-lead mx-auto mt-5 max-w-[70ch] text-center text-[18px]">Explore recent floral work by Wild Flora Blooms, showcasing seasonal flowers, natural textures and modern floral styling for weddings, events and bouquets.</p>
+      </div>
+      <Strip title="Wedding Flowers" keys={galleries.wedding} />
+      <Strip title="Event Flowers" keys={galleries.events} />
+      <Strip title="Seasonal Bouquets" keys={galleries.seasonal} />
+      <div className="mt-12 flex justify-center"><Button className="w-[242px]" onClick={() => go('contact')}>Get in touch with Lora today</Button></div>
+    </section>
+  )
+}
+
+function WorkshopsAndVouchers() {
+  const { go } = useStore()
+  const sessions = workshops.flatMap((w) => w.sessions.map((s) => ({ ...s, w }))).filter((s) => s.booked < s.capacity).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3)
+  return (
+    <section className="border-t border-linen bg-ivory">
+      <div className="wrap grid gap-14 py-16 md:grid-cols-2 md:py-20">
+        <div>
+          <h2 className="wf-h2">Workshops</h2>
+          <p className="wf-lead mt-4 text-[18px]">Wreath making, create your own bouquet and flower crowns — join a group session or book a private workshop for your hens party or birthday.</p>
+          <ul className="mt-8 divide-y divide-linen border-y border-linen">
+            {sessions.map((s) => (
+              <li key={s.id} className="flex items-center justify-between gap-4 py-4">
+                <div>
+                  <p className="font-serif text-[19px] italic">{s.w.title}</p>
+                  <p className="text-[15px] text-ink-mute">{niceDate(s.date, { weekday: 'long', day: 'numeric', month: 'long' })} · {fmt(s.w.price)} · {s.capacity - s.booked} {s.capacity - s.booked === 1 ? 'place' : 'places'} left</p>
+                </div>
+                <Button size="sm" onClick={() => go('workshops')}>Book</Button>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="md:pl-6">
-          <h2 className="text-h2 text-forest">A little something beautiful.</h2>
-          <p className="mt-4 max-w-[44ch] text-ink-soft">For flowers, plants or a workshop place — let them choose. Vouchers are emailed with your personal message, so they work for last-minute birthdays too.</p>
-          <Button className="mt-8" variant="rose" onClick={() => go('vouchers')}>Explore Gift Vouchers</Button>
+        <div className="flex flex-col">
+          <h2 className="wf-h2">Gift vouchers</h2>
+          <p className="wf-lead mt-4 text-[18px]">For flowers, an orchid or a workshop place — let them choose. Emailed with your personal message.</p>
+          <div className="mt-8 grid flex-1 grid-cols-[1fr_1.2fr] items-center gap-6 bg-rose-pale p-6">
+            <Photo k="e8" caption={false} ratio="3/4" />
+            <div>
+              <p className="font-serif text-[40px] italic leading-none text-ink">$50 – $200</p>
+              <p className="mt-2 text-[16px] text-ink-soft">or choose your own amount</p>
+              <Button className="mt-6" onClick={() => go('vouchers')}>Buy a gift voucher</Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-function Story() {
+function Reviews() {
+  const [i, setI] = useState(0)
+  const t = testimonials[i]
+  const n = testimonials.length
   return (
-    <section className="wrap grid gap-12 py-24 md:grid-cols-12 md:gap-8 md:py-32">
-      <div className="relative md:col-span-5">
-        <Photo k="story" ratio="4/5" className="w-[82%]" />
-        <div className="absolute -bottom-10 right-0 w-[44%] border-[6px] border-ivory"><Photo k="story2" ratio="1/1" caption={false} /></div>
-      </div>
-      <div className="md:col-span-6 md:col-start-7 md:self-center">
-        <p className="font-serif text-[17px] italic text-ink-soft">Our studio</p>
-        <p className="mt-5 font-serif text-[26px] leading-[1.35] text-forest md:text-[32px]">We think flowers look best when they look a little like they were picked: loose, layered and moving the way they grow.</p>
-        <div className="mt-8 max-w-[56ch] space-y-4 text-ink-soft" style={{ lineHeight: 1.75 }}>
-          <p>Every arrangement starts with what’s good that week. We buy from local growers wherever we can, condition every stem by hand and design without floral foam, so nothing goes to waste that doesn’t have to.</p>
-          <p>Native Australian flowers have a special place in the studio — banksia, kangaroo paw and gum sit happily next to garden roses and sweet peas.</p>
+    <section className="bg-sage text-white">
+      <div className="wrap py-16 md:py-20">
+        <SectionTitle light>Kind words from clients</SectionTitle>
+        <div className="relative mx-auto mt-10 max-w-[760px] border-y border-white/90 px-10 py-10 md:px-14">
+          <button onClick={() => setI((i - 1 + n) % n)} aria-label="Previous review" className="absolute -left-2 top-1/2 -translate-y-1/2 md:-left-16"><ChevronLeft size={34} strokeWidth={1} /></button>
+          <blockquote key={i} className="fade-in text-center">
+            <p className="font-caps text-[11.5px] uppercase leading-[2] tracking-[0.18em] md:text-[12px]">{t.text}</p>
+            <footer className="mt-6 font-serif text-[18px] italic tracking-[0.08em]">{t.names}</footer>
+          </blockquote>
+          <button onClick={() => setI((i + 1) % n)} aria-label="Next review" className="absolute -right-2 top-1/2 -translate-y-1/2 md:-right-16"><ChevronRight size={34} strokeWidth={1} /></button>
         </div>
-        <p className="mt-8 text-[14px] text-ink-mute">— <Ph>Founder’s name</Ph>, florist & owner</p>
-        <Link to="about" className="mt-6 inline-block text-[15px] text-forest link-u">Read our story</Link>
+        <div className="mt-6 flex justify-center gap-2">{testimonials.map((_, k) => <button key={k} aria-label={`Review ${k + 1}`} onClick={() => setI(k)} className={`h-1.5 w-1.5 rounded-full ${k === i ? 'bg-white' : 'bg-white/40'}`} />)}</div>
       </div>
     </section>
   )
 }
 
-function Gallery() {
-  const tiles = ['ig1', 'ig2', 'ig3', 'ig4', 'ig6']
+const SERVICES_OPT = ['Wedding flowers', 'Event flowers', 'Bouquet / custom order', 'Private workshop', 'Something else']
+
+export function ContactSection({ standalone }) {
+  const [f, setF] = useState({ name: '', email: '', phone: '', date: '', location: '', service: '', florals: '', delivery: '', vision: '' })
+  const [err, setErr] = useState({})
+  const [sent, setSent] = useState(false)
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
+  const submit = (e) => {
+    e.preventDefault()
+    const x = {}
+    if (!f.name.trim()) x.name = 'Please add your name'
+    if (!/^\S+@\S+\.\S+$/.test(f.email)) x.email = 'Please add a valid email'
+    if (!f.service) x.service = 'Choose a floral service'
+    if (!f.date) x.date = 'Add a date — an estimate is fine'
+    if (!f.location.trim()) x.location = 'Add the event location or suburb'
+    if (!f.florals.trim()) x.florals = 'Tell us what florals you need'
+    if (!f.delivery) x.delivery = 'Let us know about delivery or setup'
+    setErr(x); if (!Object.keys(x).length) setSent(true)
+  }
+  const box = (k) => `field text-center ${err[k] ? '!border-clay' : ''}`
+  const Err = ({ k }) => (err[k] ? <p className="mt-1 text-center text-[14px] italic text-clay">{err[k]}</p> : null)
   return (
-    <section className="wrap pb-24 md:pb-28">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <h2 className="text-h2 text-forest">From the studio bench</h2>
-        <a href="https://instagram.com" className="flex items-center gap-2 text-[15px] text-ink-soft link-u"><Instagram size={17} strokeWidth={1.5} /> Follow along <Ph>@instagram handle</Ph></a>
-      </div>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:grid-rows-2 md:gap-3">
-        {tiles.map((t, i) => (
-          <a key={t} href="https://instagram.com" className={`group block ${i === 0 ? 'col-span-2 row-span-2' : ''}`} aria-label="Instagram post">
-            <Photo k={t} caption={i === 0} className="aspect-square h-full transition-opacity group-hover:opacity-90" />
-          </a>
-        ))}
+    <section className="bg-ivory" id="contact-us">
+      <div className="wrap max-w-[760px] py-16 md:py-20">
+        <SectionTitle as={standalone ? 'h1' : 'h2'}>Contact us</SectionTitle>
+        <p className="wf-lead mx-auto mt-5 max-w-[62ch] text-center text-[18px]">Planning a wedding, event or need a bouquet? Fill out the enquiry form below to request a quote or check availability, otherwise if you prefer feel free to give me a call.</p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-serif text-[18px] italic text-ink-soft">
+          <a href={`tel:${contact.tel}`} className="flex items-center gap-2 hover:text-sage"><Phone size={20} strokeWidth={1.3} className="text-sage" />{contact.phone}</a>
+          <span className="flex items-center gap-3">
+            <a href={contact.facebook} aria-label="Facebook" className="text-sage hover:text-forest-deep"><Facebook size={20} strokeWidth={1.3} /></a>
+            <a href={contact.instagram} aria-label="Instagram" className="text-sage hover:text-forest-deep"><Instagram size={22} strokeWidth={1.3} /></a>
+            <span>Follow along</span>
+          </span>
+        </div>
+        {sent ? (
+          <div className="mt-10 border border-sage p-10 text-center">
+            <p className="font-serif text-[24px] italic">Thank you, {f.name.split(' ')[0]} — your enquiry has been received.</p>
+            <p className="mt-2 text-ink-soft">Lora will be in touch soon.</p>
+            <DemoNote className="mt-6 text-left">Demo form. On the live site this enquiry would land in the studio’s enquiry dashboard (see Studio admin) and could be quoted through Xero.</DemoNote>
+          </div>
+        ) : (
+          <form onSubmit={submit} noValidate className="mt-10 space-y-4">
+            <div><input aria-label="Your name" placeholder="Your Name*" value={f.name} onChange={set('name')} className={box('name')} autoComplete="name" /><Err k="name" /></div>
+            <div><input aria-label="Your email" type="email" placeholder="Your Email*" value={f.email} onChange={set('email')} className={box('email')} autoComplete="email" /><Err k="email" /></div>
+            <input aria-label="Phone number" type="tel" placeholder="Phone Number" value={f.phone} onChange={set('phone')} className={box('phone')} autoComplete="tel" />
+            <div>
+              <select aria-label="What floral service?" value={f.service} onChange={set('service')} className={`${box('service')} ${f.service ? '' : 'italic text-ink-mute'}`}>
+                <option value="">What floral service?*</option>{SERVICES_OPT.map((o) => <option key={o}>{o}</option>)}
+              </select><Err k="service" />
+            </div>
+            <div><input aria-label="Event date" type={f.date ? 'date' : 'text'} onFocus={(e) => (e.target.type = 'date')} placeholder="Event Date*" value={f.date} onChange={set('date')} className={box('date')} /><Err k="date" /></div>
+            <div><input aria-label="Event location" placeholder="Event Location*" value={f.location} onChange={set('location')} className={box('location')} /><Err k="location" /></div>
+            <div><input aria-label="What florals do you need?" placeholder="What florals do you need?*" value={f.florals} onChange={set('florals')} className={box('florals')} /><Err k="florals" /></div>
+            <div>
+              <select aria-label="Delivery or setup required?" value={f.delivery} onChange={set('delivery')} className={`${box('delivery')} ${f.delivery ? '' : 'italic text-ink-mute'}`}>
+                <option value="">Delivery or setup required?*</option><option>Delivery only</option><option>Delivery and setup</option><option>I’ll collect</option><option>Not sure yet</option>
+              </select><Err k="delivery" />
+            </div>
+            <textarea aria-label="Tell us more" rows={4} placeholder="Tell us more about your event or floral vision:" value={f.vision} onChange={set('vision')} className="field resize-none text-center" />
+            <div className="flex justify-center pt-4"><Button type="submit" className="w-[242px]">Submit</Button></div>
+          </form>
+        )}
       </div>
     </section>
   )
