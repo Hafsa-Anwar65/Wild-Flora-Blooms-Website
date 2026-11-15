@@ -254,7 +254,7 @@ export function Footer() {
   const submit = (e) => {
     e.preventDefault()
     if (!/^\S+@\S+\.\S+$/.test(email)) { setErr('Enter an email address like name@example.com'); return }
-    setErr(''); setDone(true); flash('Subscribed (demo — no email sent)')
+    setErr(''); setDone(true); flash('Subscribed')
   }
   const icon = 'text-sage hover:text-forest-deep'
   return (
@@ -266,7 +266,7 @@ export function Footer() {
             <p className="mt-2 font-serif text-[18px] italic text-white/90">New workshop dates, Christmas wreath pre-orders and what’s in season.</p>
           </div>
           <form onSubmit={submit} noValidate>
-            {done ? <p className="font-serif text-[19px] italic">Thank you — you’re on the list. <span className="block text-[14px] not-italic text-white/80">Demo only: newsletter platform to be connected.</span></p> : (
+            {done ? <p className="font-serif text-[19px] italic">Thank you, you’re on the list. <span className="block text-[14px] not-italic text-white/80">Demo only: newsletter platform to be connected.</span></p> : (
               <>
                 <label htmlFor="nl" className="sr-only">Email address</label>
                 <div className="flex border-b border-white/70">

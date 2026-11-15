@@ -3,7 +3,7 @@ import { Check } from 'lucide-react'
 import { Photo, Button, Field, DemoNote, Link } from '../components/ui'
 
 const REQS = ['Bridal bouquet', 'Bridesmaids’ bouquets', 'Buttonholes & corsages', 'Flower crowns', 'Ceremony arbour', 'Aisle florals', 'Table centrepieces', 'Bud vases', 'Hanging installation', 'Cake flowers']
-const BUDGETS = ['Under $1,500', '$1,500 – $3,000', '$3,000 – $5,000', '$5,000 – $8,000', '$8,000+', 'Not sure yet']
+const BUDGETS = ['Under $1,500', '$1,500 to $3,000', '$3,000 to $5,000', '$5,000 to $8,000', '$8,000+', 'Not sure yet']
 
 export default function Weddings() {
   const [f, setF] = useState({ name: '', email: '', phone: '', date: '', venue: '', guests: '', reqs: [], budget: '', info: '' })
@@ -18,7 +18,7 @@ export default function Weddings() {
     if (!f.name.trim()) x.name = 'Enter your full name'
     if (!/^\S+@\S+\.\S+$/.test(f.email)) x.email = 'Enter a valid email address'
     if (!/^[\d\s+()-]{8,}$/.test(f.phone)) x.phone = 'Enter a phone number'
-    if (!f.date) x.date = 'Add your wedding date — an estimate is fine'
+    if (!f.date) x.date = 'Add your wedding date (an estimate is fine)'
     else if (new Date(f.date) < new Date()) x.date = 'Choose a date in the future'
     if (f.guests && (!/^\d+$/.test(f.guests) || +f.guests < 1)) x.guests = 'Enter a number of guests'
     if (!f.reqs.length) x.reqs = 'Choose at least one thing you need flowers for'
@@ -49,7 +49,7 @@ export default function Weddings() {
           <p className="mt-4 text-ink-soft">Seasonal wedding flowers designed to complement your celebration, including bridal bouquets, ceremony flowers and reception arrangements.</p>
         </div>
         <ol className="grid gap-8 sm:grid-cols-2 md:col-span-8">
-          {[['Tell us about your day', 'Share your date, venue and the feel you’re after using the form below.'], ['We talk it through', 'A call or studio visit to go over colours, flowers and the parts of the day that matter most.'], ['You receive a quote', 'A clear, itemised quote — so you can see exactly where the budget goes.'], ['We bring it to life', 'Flowers sourced and designed in the week of your wedding, then delivered and installed.']].map(([t, d], i) => (
+          {[['Tell us about your day', 'Share your date, venue and the feel you’re after using the form below.'], ['We talk it through', 'A call or studio visit to go over colours, flowers and the parts of the day that matter most.'], ['You receive a quote', 'A clear, itemised quote so you can see exactly where the budget goes.'], ['We bring it to life', 'Flowers sourced and designed in the week of your wedding, then delivered and installed.']].map(([t, d], i) => (
             <li key={t} className="border-t border-linen pt-5">
               <span className="font-serif text-[17px] text-rose-deep">Step {i + 1}</span>
               <p className="mt-2 font-serif text-[22px] leading-tight">{t}</p>
@@ -80,7 +80,7 @@ export default function Weddings() {
                 <p className="mt-3 max-w-[54ch] text-ink-soft">Reference {sent.ref}. We’ll be in touch about your {new Date(sent.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })} wedding. Our usual reply time is <span className="rounded-[2px] border border-dashed border-sage px-1.5">to confirm</span>.</p>
                 <dl className="mt-8 grid gap-4 border-t border-linen pt-6 text-[16.5px] sm:grid-cols-2">
                   <div><dt className="text-ink-mute">Venue</dt><dd>{sent.venue || 'Not decided yet'}</dd></div>
-                  <div><dt className="text-ink-mute">Guests</dt><dd>{sent.guests || '—'}</dd></div>
+                  <div><dt className="text-ink-mute">Guests</dt><dd>{sent.guests || 'Not sure yet'}</dd></div>
                   <div><dt className="text-ink-mute">Budget</dt><dd>{sent.budget}</dd></div>
                   <div><dt className="text-ink-mute">Flowers for</dt><dd>{sent.reqs.join(', ')}</dd></div>
                 </dl>

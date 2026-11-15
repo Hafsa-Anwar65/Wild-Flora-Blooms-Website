@@ -52,10 +52,10 @@ export const photos = {
   e10: { src: img('waxquc0ofa2NGqlGVP_O-g/shared/a814454b-02b5-40d0-a3a6-4184d1b8773e.jpg'), alt: 'Floral wreath created at a workshop by Wild Flora Blooms, Perth florist', shot: 'Workshop wreath', tones: ['#E6E1DA', '#BF5A35', '#E4A04F', '#62723F'] },
   e11: { src: img('wBUG5n3in-GTrUhiGsVOMw/shared/16ecf856-34b2-4ff2-9d0e-da521b92edaa.jpg'), alt: 'Floral wreath created at a workshop by Wild Flora Blooms, Perth florist', shot: 'Workshop wreath', tones: ['#E3DED6', '#B9523A', '#E2A156', '#67773F'] },
   // No photo yet — studio to supply
-  orchid:      { src: null, shot: 'Phalaenopsis orchid in a ceramic pot — photo to supply', tones: ['#E4E2DA', '#FBF8F3', '#B5BDA8', '#D7C3CC'] },
-  orchidWhite: { src: null, shot: 'White Phalaenopsis, close crop — photo to supply', tones: ['#ECEAE2', '#FFFFFF', '#C2CAB7', '#E2D2D8'] },
-  native:      { src: null, shot: 'Native bouquet — banksia, kangaroo paw, gum — photo to supply', tones: ['#7B7656', '#C9733F', '#E1C690', '#55634A'] },
-  voucher:     { src: null, shot: 'Gift voucher card tucked into a posy — photo to supply', tones: ['#EBD8D0', '#F7EEE9', '#C79A8E', '#A2AC94'] },
+  orchid:      { src: null, shot: 'Phalaenopsis orchid in a ceramic pot', tones: ['#E4E2DA', '#FBF8F3', '#B5BDA8', '#D7C3CC'] },
+  orchidWhite: { src: null, shot: 'White Phalaenopsis, close crop', tones: ['#ECEAE2', '#FFFFFF', '#C2CAB7', '#E2D2D8'] },
+  native:      { src: null, shot: 'Native bouquet with banksia, kangaroo paw and gum', tones: ['#7B7656', '#C9733F', '#E1C690', '#55634A'] },
+  voucher:     { src: null, shot: 'Gift voucher card tucked into a posy', tones: ['#EBD8D0', '#F7EEE9', '#C79A8E', '#A2AC94'] },
 }
 
 export const galleries = {
@@ -81,7 +81,7 @@ export const products = [
   },
   {
     id: 'seasonal-bouquet', name: 'Seasonal Bouquet', category: 'seasonal', photo: 's1', gallery: ['s1', 's3', 's7'],
-    short: 'Our signature garden-style bouquet — natural, textured and full of movement.',
+    short: 'Our signature garden-style bouquet. Natural, textured and full of movement.',
     description: 'Fresh bouquets created using locally sourced blooms that reflect the colours and textures of the current season. Designed in a loose, natural style so it looks just as lovely in the vase as it does in hand.',
     sizes: [{ label: 'Small', price: 120 }, { label: 'Medium', price: 150 }, { label: 'Large', price: 195 }],
     stock: 'in', tag: 'Most loved',
@@ -96,7 +96,7 @@ export const products = [
   {
     id: 'native-bouquet', name: 'Native Bouquet', category: 'native', photo: 'native', gallery: ['native', 's8', 's10'],
     short: 'Banksia, kangaroo paw, gum and whatever native is flowering now.',
-    description: 'An earthy bouquet of Australian natives — sculptural banksia and protea, kangaroo paw, silver gum and native grasses. Natives are long-lasting and many dry beautifully in the vase.',
+    description: 'An earthy bouquet of Australian natives: sculptural banksia and protea, kangaroo paw, silver gum and native grasses. Natives are long-lasting and many dry beautifully in the vase.',
     sizes: [{ label: 'Small', price: 95 }, { label: 'Medium', price: 125 }, { label: 'Large', price: 160 }],
     stock: 'in', tag: 'Long vase life',
   },
@@ -110,7 +110,7 @@ export const products = [
   {
     id: 'phalaenopsis-orchid', name: 'Phalaenopsis Orchid', category: 'plants', photo: 'orchid', gallery: ['orchid', 'orchidWhite'],
     short: 'An elegant moth orchid in a ceramic pot. Flowers for months with little fuss.',
-    description: 'Phalaenopsis are the easiest orchids to live with. Delivered potted in a simple ceramic with a care card. Keep in bright, indirect light and water lightly once a week — the flowers can last for months.',
+    description: 'Phalaenopsis are the easiest orchids to live with. Delivered potted in a simple ceramic with a care card. Keep in bright, indirect light and water lightly once a week and the flowers can last for months.',
     sizes: [{ label: 'Single stem', price: 85 }, { label: 'Double stem', price: 120 }],
     stock: 'low', tag: 'Plant',
   },
@@ -122,7 +122,7 @@ export const products = [
     stock: 'in', tag: 'Seasonal',
   },
   {
-    id: 'christmas-wreath-white', name: 'Christmas Wreath — Soft White', category: 'christmas', photo: 'e9', gallery: ['e9', 'e6', 'e11'],
+    id: 'christmas-wreath-white', name: 'Soft White Christmas Wreath', category: 'christmas', photo: 'e9', gallery: ['e9', 'e6', 'e11'],
     short: 'A softer wreath in whites and greens for a classic front door.',
     description: 'The same hand-made wreath in a palette of soft whites and greens. Finished with a natural ribbon for hanging.',
     sizes: [{ label: '40 cm', price: 110 }, { label: '55 cm', price: 145 }],
@@ -134,13 +134,13 @@ export const featuredIds = ['seasonal-bouquet', 'seasonal-posy', 'native-bouquet
 
 export const testimonials = [
   { names: 'Julia and Lewis', text: 'I honestly couldn’t have asked for a more incredible wedding florist than Wild Flora Blooms. From the very beginning, Lora was so warm, professional, and easy to communicate with. She really took the time to understand my vision and brought it to life even more beautifully than I imagined. Lora’s creativity, attention to detail, and passion for what she does truly shines through in her work. I felt completely confident leaving everything in her hands, and she delivered above and beyond. I’m so grateful for the role she played in making our day so special. I would recommend Wild Flora Blooms to anyone without hesitation.' },
-  { names: 'Laura and Tom', text: 'Lora went out of her way to make sure my vision was captured in her designs. The flowers held up for days after the wedding. She was flexible, approachable and easy to talk to about my bouquets. We had added boutonnieres at the last minute and Lora was happy to put them together to match the bridesmaids. Everything was amazing — thank you for making my day special and perfect. She was always honest, responsive, and very professional which made my day super easy.' },
+  { names: 'Laura and Tom', text: 'Lora went out of her way to make sure my vision was captured in her designs. The flowers held up for days after the wedding. She was flexible, approachable and easy to talk to about my bouquets. We had added boutonnieres at the last minute and Lora was happy to put them together to match the bridesmaids. Everything was amazing, thank you for making my day special and perfect. She was always honest, responsive, and very professional which made my day super easy.' },
   { names: 'Georgia and Chris', text: 'My husband and I had such a wonderful experience with Lora! From the very beginning, she was incredibly attentive and thoughtful. She took the time to call and check in on our colour palette and really took the time to understand the overall vision for our day. Lora offered fantastic ideas and suggestions that elevated everything beyond what we had imagined, while still staying true to the style we wanted. On the big day, she delivered everything right on time and set up the flowers beautifully. Every arrangement looked stunning and perfectly brought the whole wedding together. We would highly recommend her to anyone looking for a talented and reliable florist!' },
 ]
 
 export const contact = {
   phone: '0407 219 797', tel: '0407219797', email: 'wildflorablooms@gmail.com',
-  hours: 'Monday to Friday, 9am – 5pm', area: 'Coogee, just south of Perth',
+  hours: 'Monday to Friday, 9am to 5pm', area: 'Coogee, just south of Perth',
   instagram: 'https://www.instagram.com/wildflorablooms/', facebook: 'https://www.facebook.com/profile.php?id=61572138651906',
 }
 
@@ -156,27 +156,27 @@ export const workshops = [
     summary: 'Build your own seasonal wreath with Lora, using fresh foliage, flowers and dried accents.',
     details: 'All materials, tools and the wreath base are provided. You will learn how to layer foliage and blooms so your wreath holds its shape as it dries. Perfect for the lead-up to Christmas.',
     sessions: [
-      { id: 'wr-1', date: '2026-11-28', time: '10:00 am – 12:30 pm', capacity: 10, booked: 10 },
-      { id: 'wr-2', date: '2026-12-05', time: '10:00 am – 12:30 pm', capacity: 10, booked: 8 },
-      { id: 'wr-3', date: '2026-12-12', time: '2:00 pm – 4:30 pm', capacity: 10, booked: 3 },
+      { id: 'wr-1', date: '2026-11-28', time: '10:00 am to 12:30 pm', capacity: 10, booked: 10 },
+      { id: 'wr-2', date: '2026-12-05', time: '10:00 am to 12:30 pm', capacity: 10, booked: 8 },
+      { id: 'wr-3', date: '2026-12-12', time: '2:00 pm to 4:30 pm', capacity: 10, booked: 3 },
     ],
   },
   {
     id: 'bouquet', title: 'Create Your Own Bouquet', photo: 's3', price: 125, duration: '2 hours',
-    summary: 'Learn to build a hand-tied bouquet from locally grown, seasonal stems — then take it home.',
+    summary: 'Learn to build a hand-tied bouquet from locally grown, seasonal stems, then take it home.',
     details: 'We cover conditioning, choosing stems and the spiral technique Lora uses for every bouquet. Flowers, tools and wrapping are all included.',
     sessions: [
-      { id: 'bq-1', date: '2027-01-17', time: '10:00 am – 12:00 pm', capacity: 10, booked: 9 },
-      { id: 'bq-2', date: '2027-02-07', time: '10:00 am – 12:00 pm', capacity: 10, booked: 2 },
+      { id: 'bq-1', date: '2027-01-17', time: '10:00 am to 12:00 pm', capacity: 10, booked: 9 },
+      { id: 'bq-2', date: '2027-02-07', time: '10:00 am to 12:00 pm', capacity: 10, booked: 2 },
     ],
   },
   {
     id: 'crown', title: 'Flower Crown Workshop', photo: 'e2', price: 95, duration: '1.5 hours',
-    summary: 'Make a fresh flower crown — a favourite for hens parties and birthdays.',
+    summary: 'Make a fresh flower crown, a favourite for hens parties and birthdays.',
     details: 'A relaxed, social session. Lora guides you through wiring and taping each bloom so your crown is comfortable and lasts through the celebration.',
     sessions: [
-      { id: 'fc-1', date: '2027-02-21', time: '11:00 am – 12:30 pm', capacity: 12, booked: 12 },
-      { id: 'fc-2', date: '2027-03-07', time: '11:00 am – 12:30 pm', capacity: 12, booked: 5 },
+      { id: 'fc-1', date: '2027-02-21', time: '11:00 am to 12:30 pm', capacity: 12, booked: 12 },
+      { id: 'fc-2', date: '2027-03-07', time: '11:00 am to 12:30 pm', capacity: 12, booked: 5 },
     ],
   },
 ]
@@ -192,12 +192,12 @@ export const storeConfig = {
 }
 
 export const enquiries = [
-  { id: 'ENQ-1042', name: 'Charlotte Nguyen', email: 'charlotte@example.com', phone: '04XX XXX XXX', date: '2027-03-20', venue: 'Venue to be confirmed', guests: 120, budget: '$5,000 – $8,000', requirements: ['Bridal bouquet', 'Bridesmaids (4)', 'Ceremony arbour', 'Table centrepieces'], notes: 'Loving soft blush and white with lots of greenery. Outdoor ceremony.', received: '2026-11-14', quote: 'not-started', followUp: 'due', stage: 2 },
-  { id: 'ENQ-1041', name: 'Priya & Tom', email: 'priya.t@example.com', phone: '04XX XXX XXX', date: '2027-02-13', venue: 'Winery (name supplied)', guests: 80, budget: '$3,000 – $5,000', requirements: ['Bridal bouquet', 'Buttonholes (6)', 'Bud vases'], notes: 'Would love natives — banksia and gum.', received: '2026-11-12', quote: 'draft', followUp: 'none', stage: 4 },
+  { id: 'ENQ-1042', name: 'Charlotte Nguyen', email: 'charlotte@example.com', phone: '04XX XXX XXX', date: '2027-03-20', venue: 'Venue to be confirmed', guests: 120, budget: '$5,000 to $8,000', requirements: ['Bridal bouquet', 'Bridesmaids (4)', 'Ceremony arbour', 'Table centrepieces'], notes: 'Loving soft blush and white with lots of greenery. Outdoor ceremony.', received: '2026-11-14', quote: 'not-started', followUp: 'due', stage: 2 },
+  { id: 'ENQ-1041', name: 'Priya & Tom', email: 'priya.t@example.com', phone: '04XX XXX XXX', date: '2027-02-13', venue: 'Winery (name supplied)', guests: 80, budget: '$3,000 to $5,000', requirements: ['Bridal bouquet', 'Buttonholes (6)', 'Bud vases'], notes: 'Would love natives, especially banksia and gum.', received: '2026-11-12', quote: 'draft', followUp: 'none', stage: 4 },
   { id: 'ENQ-1039', name: 'Hannah Morris', email: 'hannah.m@example.com', phone: '04XX XXX XXX', date: '2027-04-10', venue: 'Private property', guests: 150, budget: '$8,000+', requirements: ['Full styling', 'Hanging installation', 'Ceremony arbour'], notes: 'Large marquee, evening reception.', received: '2026-11-06', quote: 'sent', followUp: 'overdue', stage: 6 },
-  { id: 'ENQ-1036', name: 'Lucy Bennett', email: 'lucy.b@example.com', phone: '04XX XXX XXX', date: '2027-01-23', venue: 'City restaurant', guests: 40, budget: '$1,500 – $3,000', requirements: ['Bridal bouquet', 'Table posies'], notes: 'Small and relaxed.', received: '2026-10-30', quote: 'accepted', followUp: 'none', stage: 8, invoice: 'awaiting' },
-  { id: 'ENQ-1031', name: 'Sophie & Ari', email: 'sophie.ari@example.com', phone: '04XX XXX XXX', date: '2026-12-19', venue: 'Beachside venue', guests: 95, budget: '$5,000 – $8,000', requirements: ['Bridal party', 'Arbour', 'Centrepieces'], notes: '', received: '2026-10-12', quote: 'accepted', followUp: 'none', stage: 9, invoice: 'paid' },
-  { id: 'ENQ-1028', name: 'Grace Whitfield', email: 'grace.w@example.com', phone: '04XX XXX XXX', date: '2027-05-08', venue: 'Garden venue', guests: 60, budget: '$3,000 – $5,000', requirements: ['Bridal bouquet', 'Ceremony florals'], notes: 'Following up after seeing workshop.', received: '2026-10-05', quote: 'sent', followUp: 'scheduled', stage: 6 },
+  { id: 'ENQ-1036', name: 'Lucy Bennett', email: 'lucy.b@example.com', phone: '04XX XXX XXX', date: '2027-01-23', venue: 'City restaurant', guests: 40, budget: '$1,500 to $3,000', requirements: ['Bridal bouquet', 'Table posies'], notes: 'Small and relaxed.', received: '2026-10-30', quote: 'accepted', followUp: 'none', stage: 8, invoice: 'awaiting' },
+  { id: 'ENQ-1031', name: 'Sophie & Ari', email: 'sophie.ari@example.com', phone: '04XX XXX XXX', date: '2026-12-19', venue: 'Beachside venue', guests: 95, budget: '$5,000 to $8,000', requirements: ['Bridal party', 'Arbour', 'Centrepieces'], notes: '', received: '2026-10-12', quote: 'accepted', followUp: 'none', stage: 9, invoice: 'paid' },
+  { id: 'ENQ-1028', name: 'Grace Whitfield', email: 'grace.w@example.com', phone: '04XX XXX XXX', date: '2027-05-08', venue: 'Garden venue', guests: 60, budget: '$3,000 to $5,000', requirements: ['Bridal bouquet', 'Ceremony florals'], notes: 'Following up after seeing workshop.', received: '2026-10-05', quote: 'sent', followUp: 'scheduled', stage: 6 },
 ]
 
 export const workflowSteps = [

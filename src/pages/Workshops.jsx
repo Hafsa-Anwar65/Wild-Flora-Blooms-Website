@@ -31,7 +31,7 @@ export default function Workshops() {
         <div className="mb-10 grid gap-4 border-b border-linen pb-8 text-[17px] text-ink-soft sm:grid-cols-3">
           <p><span className="block font-serif text-[20px] text-ink">Where</span><Ph>studio address</Ph></p>
           <p><span className="block font-serif text-[20px] text-ink">Included</span>Flowers, tools, wrapping and a grazing plate</p>
-          <p><span className="block font-serif text-[20px] text-ink">Group size</span>Up to 10–14 people, depending on the class</p>
+          <p><span className="block font-serif text-[20px] text-ink">Group size</span>Up to 10 to 14 people, depending on the class</p>
         </div>
 
         <div className="space-y-20 md:space-y-28">
@@ -61,7 +61,7 @@ export default function Workshops() {
                         </div>
                         <div className="col-span-2 row-start-2 sm:col-span-1 sm:row-start-auto">
                           <div className="h-1 w-full overflow-hidden rounded-full bg-linen" aria-hidden><div className={`h-full ${full ? 'bg-clay' : left <= 2 ? 'bg-rose-deep' : 'bg-sage'}`} style={{ width: `${pct}%` }} /></div>
-                          <p className={`mt-1.5 flex items-center gap-1.5 text-[15px] ${full ? 'text-clay' : left <= 2 ? 'text-rose-deep' : 'text-ink-mute'}`}><Users size={13} strokeWidth={1.6} />{full ? `Fully booked · ${s.capacity} of ${s.capacity}` : `${left} of ${s.capacity} places left`}</p>
+                          <p className={`mt-1.5 flex items-center gap-1.5 text-[15px] ${full ? 'text-clay' : left <= 2 ? 'text-rose-deep' : 'text-ink-mute'}`}><Users size={13} strokeWidth={1.6} />{full ? 'Fully booked' : `${left} of ${s.capacity} places left`}</p>
                         </div>
                         <Button size="sm" variant={full ? 'ghost' : 'primary'} disabled={full} onClick={() => { setSel({ wid: w.id, sid: s.id }); setConfirmed(null) }} aria-label={full ? 'Fully booked' : `Book ${w.title} on ${s.date}`}>
                           {full ? 'Fully booked' : 'Book'}
@@ -133,7 +133,7 @@ function BookingSheet({ w, s, onClose, onBook, confirmed }) {
               </Field>
               <p className="pb-3 text-right font-serif text-[22px] tabular-nums">{fmt2(seats * w.price)}</p>
             </div>
-            <p className="mt-2 text-[15px] text-ink-mute">You can book up to {Math.min(6, left)} {Math.min(6, left) === 1 ? 'place' : 'places'} — the selector stops at what’s left.</p>
+            <p className="mt-2 text-[15px] text-ink-mute">You can book up to {Math.min(6, left)} {Math.min(6, left) === 1 ? 'place' : 'places'} in this session.</p>
             <div className="mt-6 grid gap-4">
               <Field label="Full name" error={err.name}><input value={f.name} onChange={set('name')} className={`field ${err.name ? 'field-err' : ''}`} autoComplete="name" /></Field>
               <Field label="Email" error={err.email}><input type="email" value={f.email} onChange={set('email')} className={`field ${err.email ? 'field-err' : ''}`} autoComplete="email" /></Field>

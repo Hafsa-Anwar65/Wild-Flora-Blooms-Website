@@ -42,7 +42,7 @@ export function Photo({ k, className = '', caption = true, ratio, children, alt,
       ) : (
         <div role="img" aria-label={alt || `Photograph placeholder: ${p.shot}`} className="grain absolute inset-0" style={plateStyle(k)} />
       )}
-      {!show && caption && (
+      {false && caption && (
         <span className="pointer-events-none absolute left-3 top-3 z-[1] inline-flex max-w-[85%] items-center gap-1.5 rounded-[2px] bg-ivory/80 px-2 py-1 text-[13px] leading-tight text-ink-soft backdrop-blur-[2px]">
           <Camera size={12} strokeWidth={1.6} className="shrink-0" /> <span className="truncate">{p.shot}</span>
         </span>

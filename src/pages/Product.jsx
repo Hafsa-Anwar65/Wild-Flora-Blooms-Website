@@ -97,7 +97,7 @@ export default function Product() {
             </div>
             {extras.find((e) => e.id === 'card') && (
               <div className="mt-3">
-                <textarea value={message} onChange={(e) => setMessage(e.target.value.slice(0, 200))} rows={3} placeholder="Happy birthday, Ellie — love from all of us." className="field resize-none font-serif text-[18px] italic" />
+                <textarea value={message} onChange={(e) => setMessage(e.target.value.slice(0, 200))} rows={3} placeholder="Happy birthday Ellie, love from all of us." className="field resize-none font-serif text-[18px] italic" />
                 <p className="mt-1 text-right text-[14px] text-ink-mute">{message.length}/200 · hand-written by us</p>
               </div>
             )}

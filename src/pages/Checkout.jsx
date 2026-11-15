@@ -45,9 +45,9 @@ export default function Checkout() {
   if (done) return (
     <section className="wrap max-w-[760px] py-20 md:py-28">
       <span className="grid h-12 w-12 place-items-center rounded-full bg-sage-pale text-forest"><Check size={22} /></span>
-      <h1 className="mt-6 wf-h1">Thank you — your order is in.</h1>
+      <h1 className="mt-6 wf-h1">Thank you, your order is in.</h1>
       <p className="mt-4 text-[19px] text-ink-soft">Order <strong className="font-medium text-ink">{done.no}</strong> · {fmt2(done.total)}. A confirmation would be emailed to {done.email}.{done.date && <> {done.fulfil === 'delivery' ? 'Delivery' : 'Collection'} on {new Date(done.date + 'T00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' })}.</>}</p>
-      <DemoNote className="mt-8">This is a demo confirmation. No payment was taken and no email was sent — the payment gateway and order emails are placeholders in this mockup.</DemoNote>
+      <DemoNote className="mt-8">This is a demo confirmation. No payment was taken and no email was sent. The payment gateway and order emails are placeholders in this mockup.</DemoNote>
       <Button className="mt-8" onClick={() => go('shop')}>Back to the shop</Button>
     </section>
   )
@@ -167,7 +167,7 @@ export default function Checkout() {
               <p className="text-[14.5px] text-ink-mute">Includes GST where applicable. AUD.</p>
             </dl>
             <Button type="submit" size="lg" className="mt-6 w-full"><Lock size={16} /> Place order · {fmt2(total)}</Button>
-            <p className="mt-3 text-center text-[14.5px] text-ink-mute">Demo only — no payment will be taken.</p>
+            <p className="mt-3 text-center text-[14.5px] text-ink-mute">Secure payment</p>
           </div>
         </aside>
       </div>

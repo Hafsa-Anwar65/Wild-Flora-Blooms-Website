@@ -46,7 +46,7 @@ export default function Shop() {
           <div className="md:col-span-7">
             <p className="text-[15px] text-ink-mute"><Link to="home" className="link-u">Home</Link> / <Link to="shop" className="link-u">Shop</Link>{current && <> / {current.name}</>}</p>
             <h1 className="mt-4 wf-h1">{current ? current.name : 'Flowers & flower delivery, Coogee and Perth'}</h1>
-            <p className="mt-4 max-w-[52ch] text-[19px] text-ink-soft">{current ? current.blurb + '.' : 'Bouquets, natives, orchids and seasonal things, designed in the studio and delivered by hand.'} Prices are illustrative for this mockup.</p>
+            <p className="mt-4 max-w-[52ch] text-[19px] text-ink-soft">{current ? current.blurb + '.' : 'Bouquets, natives, orchids and seasonal things, designed in the studio and delivered by hand.'} Prices shown are examples until final pricing is confirmed.</p>
           </div>
           <Photo k={current ? current.photo : 's1'} caption={false} className="hidden aspect-[16/9] md:col-span-5 md:block" />
         </div>

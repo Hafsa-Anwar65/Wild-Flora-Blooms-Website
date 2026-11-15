@@ -5,7 +5,7 @@ import { DemoNote, Link } from '../components/ui'
 import { useStore } from '../store'
 
 const QUOTE = { 'not-started': ['Not started', 'bg-linen text-ink-soft'], draft: ['Draft in Xero', 'bg-rose-pale text-rose-deep'], sent: ['Quote sent', 'bg-sage-pale text-forest'], accepted: ['Accepted', 'bg-forest text-ivory'] }
-const FOLLOW = { none: ['—', 'text-ink-mute'], scheduled: ['Scheduled', 'text-ink-soft'], due: ['Due today', 'text-rose-deep'], overdue: ['Overdue', 'text-clay'] }
+const FOLLOW = { none: ['None', 'text-ink-mute'], scheduled: ['Scheduled', 'text-ink-soft'], due: ['Due today', 'text-rose-deep'], overdue: ['Overdue', 'text-clay'] }
 const OWNER = ['site', 'site', 'owner', 'xero', 'xero', 'auto', 'site', 'xero', 'xero']
 const OWNER_LABEL = { site: 'Website', owner: 'Studio owner', xero: 'Xero', auto: 'Automation' }
 
@@ -39,7 +39,7 @@ export default function Admin() {
             <h1 className="mt-1 font-serif text-[30px] text-forest">Enquiries & quoting</h1>
           </div>
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-2 rounded-[2px] border border-dashed border-sage px-3 py-2 text-[15px] text-ink-soft"><Link2 size={14} /> Xero: not connected — proposed integration</span>
+            <span className="flex items-center gap-2 rounded-[2px] border border-dashed border-sage px-3 py-2 text-[15px] text-ink-soft"><Link2 size={14} /> Xero: not connected yet</span>
           </div>
         </div>
         <div className="wrap flex gap-1">
@@ -196,7 +196,7 @@ export default function Admin() {
                         <option value="none">No follow-up needed</option><option value="scheduled">Scheduled</option><option value="due">Due today</option><option value="overdue">Overdue</option>
                       </select></label>
                     {(active.followUp === 'due' || active.followUp === 'overdue') && (
-                      <p className={`flex items-center gap-2 text-[15px] ${FOLLOW[active.followUp][1]}`}><Clock size={14} /> Reminder: follow up with {active.name.split(' ')[0]} {active.followUp === 'overdue' ? '— this is overdue' : 'today'}.</p>
+                      <p className={`flex items-center gap-2 text-[15px] ${FOLLOW[active.followUp][1]}`}><Clock size={14} /> Reminder: follow up with {active.name.split(' ')[0]} {active.followUp === 'overdue' ? '(overdue)' : 'today'}.</p>
                     )}
                   </div>
                 </div>
@@ -225,7 +225,7 @@ function NextAction({ e, update }) {
     6: <><A icon={CheckCircle2} label="Mark quote accepted" patch={{ stage: 7, quote: 'accepted', followUp: 'none' }} msg="Quote marked accepted" /><div className="mt-2"><A variant="outline" icon={Bell} label="Send follow-up reminder" patch={{ followUp: 'scheduled' }} msg="Demo: follow-up email would be sent" /></div></>,
     7: <A icon={Receipt} label="Generate invoice in Xero" patch={{ stage: 8, invoice: 'awaiting' }} msg="Demo: invoice would be generated in Xero" />,
     8: <A icon={CircleDollarSign} label="Record payment (sync)" patch={{ stage: 9, invoice: 'paid' }} msg="Demo: payment status synced from Xero" />,
-    9: <p className="flex items-center gap-2 text-[16.5px] text-forest"><CheckCircle2 size={17} /> Paid — nothing left to do.</p>,
+    9: <p className="flex items-center gap-2 text-[16.5px] text-forest"><CheckCircle2 size={17} /> Paid. Nothing left to do.</p>,
   }
   return <div>{steps[e.stage]}<p className="mt-3 text-[14.5px] text-ink-mute">Actions update this mockup only.</p></div>
 }

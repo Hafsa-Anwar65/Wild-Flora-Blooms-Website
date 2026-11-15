@@ -9,7 +9,7 @@ export default function About() {
       <section className="bg-sage text-white">
         <div className="wrap grid items-center gap-10 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:gap-14 md:py-24">
           <div>
-            <h1 className="wf-h1 !text-white">About Wild Flora Blooms — florist in Coogee</h1>
+            <h1 className="wf-h1 !text-white">About Wild Flora Blooms, florist in Coogee</h1>
             <div className="wf-body mt-6 space-y-5 text-[18px] text-white/95">
               <p>Hi, I’m Lora, the florist behind Wild Flora Blooms, based in Coogee, just south of Perth.</p>
               <p>I create natural, seasonal floral arrangements using locally grown blooms wherever possible, with a focus on a more thoughtful and sustainable approach.</p>

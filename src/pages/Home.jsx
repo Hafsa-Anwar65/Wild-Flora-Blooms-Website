@@ -66,7 +66,7 @@ function ShopStrip({ onQuick }) {
     <section className="border-t border-linen bg-ivory">
       <div className="wrap py-16 md:py-20">
         <SectionTitle>Flowers delivered across Perth</SectionTitle>
-        <p className="wf-lead mx-auto mt-5 max-w-[62ch] text-center text-[18px]">Seasonal and native bouquets, Phalaenopsis orchids and ready-made Christmas wreaths — order online for delivery or collection.</p>
+        <p className="wf-lead mx-auto mt-5 max-w-[62ch] text-center text-[18px]">Seasonal and native bouquets, Phalaenopsis orchids and ready-made Christmas wreaths. Order online for delivery or collection.</p>
         <div className="no-scrollbar -mx-5 mt-12 flex snap-x scroll-pl-5 gap-5 overflow-x-auto px-5 md:mx-0 md:grid md:scroll-pl-0 md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0">
           {items.map((p) => <div key={p.id} className="w-[70vw] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none"><ProductCard p={p} onQuick={onQuick} /></div>)}
         </div>
@@ -160,7 +160,7 @@ function Arrangements() {
       <Strip title="Wedding Flowers" keys={galleries.wedding} />
       <Strip title="Event Flowers" keys={galleries.events} />
       <Strip title="Seasonal Bouquets" keys={galleries.seasonal} />
-      <div className="mt-12 flex justify-center"><Button className="w-[242px]" onClick={() => go('contact')}>Get in touch with Lora today</Button></div>
+      <div className="mt-12 flex justify-center"><Button className="whitespace-nowrap px-10" onClick={() => go('contact')}>Get in touch with Lora today</Button></div>
     </section>
   )
 }
@@ -173,7 +173,7 @@ function WorkshopsAndVouchers() {
       <div className="wrap grid gap-14 py-16 md:grid-cols-2 md:py-20">
         <div>
           <h2 className="wf-h2">Workshops</h2>
-          <p className="wf-lead mt-4 text-[18px]">Wreath making, create your own bouquet and flower crowns — join a group session or book a private workshop for your hens party or birthday.</p>
+          <p className="wf-lead mt-4 text-[18px]">Wreath making, create your own bouquet and flower crowns. Join a group session or book a private workshop for your hens party or birthday.</p>
           <ul className="mt-8 divide-y divide-linen border-y border-linen">
             {sessions.map((s) => (
               <li key={s.id} className="flex items-center justify-between gap-4 py-4">
@@ -188,11 +188,11 @@ function WorkshopsAndVouchers() {
         </div>
         <div className="flex flex-col">
           <h2 className="wf-h2">Gift vouchers</h2>
-          <p className="wf-lead mt-4 text-[18px]">For flowers, an orchid or a workshop place — let them choose. Emailed with your personal message.</p>
+          <p className="wf-lead mt-4 text-[18px]">For flowers, an orchid or a workshop place, let them choose. Emailed with your personal message.</p>
           <div className="mt-8 grid flex-1 grid-cols-[1fr_1.2fr] items-center gap-6 bg-rose-pale p-6">
             <Photo k="e8" caption={false} ratio="3/4" />
             <div>
-              <p className="font-serif text-[40px] italic leading-none text-ink">$50 – $200</p>
+              <p className="font-serif text-[40px] italic leading-none text-ink">$50 to $200</p>
               <p className="mt-2 text-[16px] text-ink-soft">or choose your own amount</p>
               <Button className="mt-6" onClick={() => go('vouchers')}>Buy a gift voucher</Button>
             </div>
@@ -238,7 +238,7 @@ export function ContactSection({ standalone }) {
     if (!f.name.trim()) x.name = 'Please add your name'
     if (!/^\S+@\S+\.\S+$/.test(f.email)) x.email = 'Please add a valid email'
     if (!f.service) x.service = 'Choose a floral service'
-    if (!f.date) x.date = 'Add a date — an estimate is fine'
+    if (!f.date) x.date = 'Add a date (an estimate is fine)'
     if (!f.location.trim()) x.location = 'Add the event location or suburb'
     if (!f.florals.trim()) x.florals = 'Tell us what florals you need'
     if (!f.delivery) x.delivery = 'Let us know about delivery or setup'
@@ -261,7 +261,7 @@ export function ContactSection({ standalone }) {
         </div>
         {sent ? (
           <div className="mt-10 border border-sage p-10 text-center">
-            <p className="font-serif text-[24px] italic">Thank you, {f.name.split(' ')[0]} — your enquiry has been received.</p>
+            <p className="font-serif text-[24px] italic">Thank you, {f.name.split(' ')[0]}, your enquiry has been received.</p>
             <p className="mt-2 text-ink-soft">Lora will be in touch soon.</p>
             <DemoNote className="mt-6 text-left">Demo form. On the live site this enquiry would land in the studio’s enquiry dashboard (see Studio admin) and could be quoted through Xero.</DemoNote>
           </div>
@@ -284,7 +284,7 @@ export function ContactSection({ standalone }) {
               </select><Err k="delivery" />
             </div>
             <textarea aria-label="Tell us more" rows={4} placeholder="Tell us more about your event or floral vision:" value={f.vision} onChange={set('vision')} className="field resize-none text-center" />
-            <div className="flex justify-center pt-4"><Button type="submit" className="w-[242px]">Submit</Button></div>
+            <div className="flex justify-center pt-4"><Button type="submit" className="w-[200px]">Submit</Button></div>
           </form>
         )}
       </div>

@@ -17,10 +17,10 @@ import Admin from './pages/Admin'
 const SEO = {
   home: ['Florist Coogee & Perth | Flower Delivery, Wedding & Event Flowers | Wild Flora Blooms', 'Seasonal florist in Coogee, just south of Perth. Order seasonal and native bouquets, orchids and Christmas wreaths for delivery, or enquire about wedding and event flowers.'],
   shop: ['Flower Delivery Perth & Coogee | Shop Bouquets Online | Wild Flora Blooms', 'Shop seasonal and native bouquets, Phalaenopsis orchids and Christmas wreaths online. Delivery across Coogee and surrounding Perth areas, or collect from the studio.'],
-  weddings: ['Wedding Florist Perth & Coogee | Wedding & Event Flowers | Wild Flora Blooms', 'Seasonal wedding flowers in Coogee and Perth — bridal bouquets, ceremony arbours and reception styling. Send a wedding enquiry for a tailored quote.'],
+  weddings: ['Wedding Florist Perth & Coogee | Wedding & Event Flowers | Wild Flora Blooms', 'Seasonal wedding flowers in Coogee and Perth: bridal bouquets, ceremony arbours and reception styling. Send a wedding enquiry for a tailored quote.'],
   workshops: ['Floral Workshops Perth | Wreath Making & Flower Crowns | Wild Flora Blooms', 'Book wreath making, create-your-own bouquet and flower crown workshops in Coogee, or a private workshop for hens parties and birthdays.'],
   vouchers: ['Flower Gift Vouchers Perth | Wild Flora Blooms', 'Gift vouchers for flowers, orchids and workshops, emailed with your personal message.'],
-  about: ['About Lora | Seasonal Florist in Coogee | Wild Flora Blooms', 'Meet Lora, the florist behind Wild Flora Blooms in Coogee — natural, seasonal arrangements using locally grown blooms.'],
+  about: ['About Lora | Seasonal Florist in Coogee | Wild Flora Blooms', 'Meet Lora, the florist behind Wild Flora Blooms in Coogee, creating natural, seasonal arrangements using locally grown blooms.'],
   contact: ['Contact | Florist in Coogee & Perth | Wild Flora Blooms', 'Enquire about weddings, events or bouquets. Call 0407 219 797 or send an enquiry.'],
   checkout: ['Checkout | Wild Flora Blooms', ''], admin: ['Studio admin (demo) | Wild Flora Blooms', ''],
 }
